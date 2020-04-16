@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Library {
 
-    ArrayList<Book> listOfBooks = new ArrayList();
+    private ArrayList<Book> listOfBooks = new ArrayList();
 
     public Library() {
         listOfBooks.add(new Book("Harry Potter and the Philosopher's Stone"));
@@ -19,4 +19,5 @@ public class Library {
     public ArrayList<Book> getListOfBooks() {
         return listOfBooks;
     }
+
 }
