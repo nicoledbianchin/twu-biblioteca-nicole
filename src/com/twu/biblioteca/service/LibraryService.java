@@ -12,4 +12,7 @@ public class LibraryService {
         return library.getListOfBooks();
     }
 
- }
+    public void checkOutBook(int id) {
+        getListOfBooks().remove(id);
+    }
+}
