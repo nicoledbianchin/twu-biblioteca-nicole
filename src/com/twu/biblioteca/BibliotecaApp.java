@@ -14,7 +14,11 @@ public class BibliotecaApp {
         menuService.showMenu();
         int userOption = entry.nextInt();
 
+        do {
         menuService.manipulateMenu(userOption);
+        } while (userOption != 2);
+
+        System.out.printf("Thank you for using Biblioteca!");
 
         entry.close();
     }

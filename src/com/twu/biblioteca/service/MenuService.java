@@ -10,14 +10,16 @@ public class MenuService {
     private LibraryService libraryService = new LibraryService();
     OutputFormatterService outputFormatterService = new OutputFormatterService();
     private Map<Integer, String> userOptions = new HashMap<>();
-    private boolean optionIsValid = false;
 
     public MenuService() {
         userOptions.put(1, "1 - List of books");
+        userOptions.put(2, "2 - Exit");
     }
 
     public void showMenu() {
-        System.out.println(userOptions.get(1));
+        for (String option : userOptions.values()) {
+            System.out.println(option);
+        }
     }
 
 
