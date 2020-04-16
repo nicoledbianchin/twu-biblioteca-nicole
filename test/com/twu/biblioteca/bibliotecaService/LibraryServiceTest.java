@@ -8,6 +8,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNot.not;
+
 public class LibraryServiceTest {
 
     private ArrayList<Book> expectedList;
@@ -17,19 +21,26 @@ public class LibraryServiceTest {
     @Before
     public void init() {
         expectedList = new ArrayList();
-        expectedList.add(new Book("Harry Potter and the Philosopher's Stone"));
-        list.add(new Book("Harry Potter and the Chamber of Secrets"));
-        list.add(new Book("Harry Potter and the Prisioner of Azkaban"));
-        list.add(new Book("Harry Potter and the Glober of Fire"));
-        list.add(new Book("Harry Potter and the Order of the Phoenix"));
-        list.add(new Book("Harry Potter and the Half-Blood Prince"));
-        list.add(new Book("Harry Potter and the Deathly Hollows"));
+        expectedList.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling"));
+        list.add(new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowling"));
+        list.add(new Book("Harry Potter and the Prisioner of Azkaban", "J.K. Rowling"));
+        list.add(new Book("Harry Potter and the Globet of Fire", "J.K. Rowling"));
+        list.add(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling"));
+        list.add(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling"));
+        list.add(new Book("Harry Potter and the Deathly Hollows", "J.K. Rowling"));
     }
 
     @Test
     public void shouldReturnListOfBooks() {
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
+        }
+    }
+
+    @Test
+    public void souldHaveAnAuthorPerBook() {
+        for (int i = 0; i < expectedList.size(); i++) {
+            Assert.assertThat(expectedList.get(i).getAuthor(), is(not(equalTo(null))));
         }
     }
 
