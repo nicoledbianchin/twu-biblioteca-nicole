@@ -16,9 +16,7 @@ public class BibliotecaApp {
         System.out.println("\nSee our list of books available:");
         System.out.println("_________________________________");
         for (Book book : list) {
-            System.out.println(book.getName());
-            System.out.println(book.getAuthor());
-            System.out.println(book.getPublishedYear() + "\n");
+            System.out.println(libraryService.toString(book));
         }
 
     }
