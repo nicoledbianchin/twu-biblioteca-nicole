@@ -39,15 +39,15 @@ public class LibraryServiceTest {
 
     @Test
     public void souldHaveAuthorPerBook() {
-        for (int i = 0; i < expectedList.size(); i++) {
-            Assert.assertThat(expectedList.get(i).getAuthor(), is(not(equalTo(null))));
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertThat(list.get(i).getAuthor(), is(not(equalTo(null))));
         }
     }
 
     @Test
     public void shouldHavePublishedYearPerBook() {
-        for (int i = 0; i < expectedList.size(); i++) {
-            Assert.assertThat(expectedList.get(i).getPublishedYear(), is(not(equalTo(null))));
+        for (int i = 0; i < list.size(); i++) {
+            Assert.assertThat(list.get(i).getPublishedYear(), is(not(equalTo(null))));
         }
     }
 
