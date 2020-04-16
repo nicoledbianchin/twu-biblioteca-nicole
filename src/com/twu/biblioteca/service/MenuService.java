@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class MenuService {
     private LibraryService libraryService = new LibraryService();
 
-
     public ArrayList<Book> getListOfBooks() {
         return libraryService.getListOfBooks();
     }

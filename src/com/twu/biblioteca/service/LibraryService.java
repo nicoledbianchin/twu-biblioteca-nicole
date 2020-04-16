@@ -12,7 +12,4 @@ public class LibraryService {
         return library.getListOfBooks();
     }
 
-    public String toString(Book book) {
-        return String.format( "%s, %s, %d", book.getName(), book.getAuthor(), book.getPublishedYear());
-    }
  }
