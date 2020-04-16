@@ -32,6 +32,5 @@ public class MenuServiceTest {
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
         }
-
     }
 }
