@@ -16,6 +16,7 @@ public class LibraryServiceTest {
 
     private ArrayList<Book> expectedList;
     private LibraryService libraryService = new LibraryService();
+    private ArrayList<Book> list = libraryService.getListOfBooks();
 
     @Before
     public void init() {
@@ -31,7 +32,6 @@ public class LibraryServiceTest {
 
     @Test
     public void shouldReturnListOfBooks() {
-        ArrayList<Book> list = libraryService.getListOfBooks();
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
         }
@@ -39,7 +39,6 @@ public class LibraryServiceTest {
 
     @Test
     public void souldHaveAuthorPerBook() {
-        ArrayList<Book> list = libraryService.getListOfBooks();
         for (int i = 0; i < list.size(); i++) {
             Assert.assertThat(list.get(i).getAuthor(), is(not(equalTo(null))));
         }
@@ -47,10 +46,25 @@ public class LibraryServiceTest {
 
     @Test
     public void shouldHavePublishedYearPerBook() {
-        ArrayList<Book> list = libraryService.getListOfBooks();
         for (int i = 0; i < list.size(); i++) {
             Assert.assertThat(list.get(i).getPublishedYear(), is(not(equalTo(null))));
         }
+    }
+
+    @Test
+    public void shouldDecreaseListSizeByOne() {
+        int expectedSize = list.size() - 1;
+        libraryService.checkOutBook(0);
+
+        Assert.assertThat(list.size(), is(expectedSize));
+    }
+
+    @Test
+    public void shouldRemoveBookFromList() {
+        String expectedName = list.get(1).getName();
+        libraryService.checkOutBook(0);
+
+        Assert.assertThat(list.get(0).getName(), is(equalTo(expectedName)));
     }
 
 }
