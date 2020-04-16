@@ -15,23 +15,23 @@ import static org.hamcrest.core.IsNot.not;
 public class LibraryServiceTest {
 
     private ArrayList<Book> expectedList;
-    LibraryService libraryService = new LibraryService();
-    ArrayList<Book> list = libraryService.getListOfBooks();
+    private LibraryService libraryService = new LibraryService();
 
     @Before
     public void init() {
         expectedList = new ArrayList();
         expectedList.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
-        list.add(new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowling", 1998));
-        list.add(new Book("Harry Potter and the Prisioner of Azkaban", "J.K. Rowling", 1999));
-        list.add(new Book("Harry Potter and the Globet of Fire", "J.K. Rowling", 2000));
-        list.add(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", 2003));
-        list.add(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", 2005));
-        list.add(new Book("Harry Potter and the Deathly Hollows", "J.K. Rowling", 2007));
+        expectedList.add(new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowling", 1998));
+        expectedList.add(new Book("Harry Potter and the Prisioner of Azkaban", "J.K. Rowling", 1999));
+        expectedList.add(new Book("Harry Potter and the Globet of Fire", "J.K. Rowling", 2000));
+        expectedList.add(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", 2003));
+        expectedList.add(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", 2005));
+        expectedList.add(new Book("Harry Potter and the Deathly Hollows", "J.K. Rowling", 2007));
     }
 
     @Test
     public void shouldReturnListOfBooks() {
+        ArrayList<Book> list = libraryService.getListOfBooks();
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
         }
@@ -39,6 +39,7 @@ public class LibraryServiceTest {
 
     @Test
     public void souldHaveAuthorPerBook() {
+        ArrayList<Book> list = libraryService.getListOfBooks();
         for (int i = 0; i < list.size(); i++) {
             Assert.assertThat(list.get(i).getAuthor(), is(not(equalTo(null))));
         }
@@ -46,6 +47,7 @@ public class LibraryServiceTest {
 
     @Test
     public void shouldHavePublishedYearPerBook() {
+        ArrayList<Book> list = libraryService.getListOfBooks();
         for (int i = 0; i < list.size(); i++) {
             Assert.assertThat(list.get(i).getPublishedYear(), is(not(equalTo(null))));
         }
