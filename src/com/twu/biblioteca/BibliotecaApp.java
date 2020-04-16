@@ -19,7 +19,7 @@ public class BibliotecaApp {
             menuService.manipulateMenu(userOption);
             System.out.println("");
 
-        } while (userOption != 2);
+        } while (userOption != 3);
 
         System.out.printf("Thank you for using Biblioteca!");
 

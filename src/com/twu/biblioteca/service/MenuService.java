@@ -5,15 +5,18 @@ import com.twu.biblioteca.domain.Book;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class MenuService {
     private LibraryService libraryService = new LibraryService();
     OutputFormatterService outputFormatterService = new OutputFormatterService();
     private Map<Integer, String> userOptions = new HashMap<>();
+    Scanner scanner = new Scanner(System.in);
 
     public MenuService() {
         userOptions.put(1, "1 - List of books");
-        userOptions.put(2, "2 - Exit");
+        userOptions.put(2, "2 - Check out book");
+        userOptions.put(3, "3 - Exit");
     }
 
     public void showMenu() {
@@ -23,7 +26,6 @@ public class MenuService {
         }
     }
 
-
     public void manipulateMenu(int userOption) {
         if (userOptions.containsKey(userOption)) {
             switch (userOption) {
@@ -31,12 +33,15 @@ public class MenuService {
                     System.out.println("\nSee our list of books available:");
                     System.out.println("_________________________________");
                     for (Book book : getListOfBooks()) {
-                        System.out.print(getListOfBooks().indexOf(book) + " - ");
+                        System.out.print((getListOfBooks().indexOf(book) + 1) + " - ");
                         System.out.printf(outputFormatterService.formatOutputBooks(book));
                     }
                     break;
 
                 case 2:
+                    System.out.println("Inform the id of the book you want to check out: ");
+                    int id = scanner.nextInt() - 1;
+                    libraryService.checkOutBook(id);
                     break;
             }
 
