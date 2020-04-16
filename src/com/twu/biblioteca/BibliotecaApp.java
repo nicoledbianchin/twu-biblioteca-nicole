@@ -9,13 +9,16 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         MenuService menuService = new MenuService();
         Scanner entry = new Scanner(System.in);
+        int userOption;
 
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
-        menuService.showMenu();
-        int userOption = entry.nextInt();
-
         do {
-        menuService.manipulateMenu(userOption);
+            menuService.showMenu();
+            userOption = entry.nextInt();
+
+            menuService.manipulateMenu(userOption);
+            System.out.println("");
+
         } while (userOption != 2);
 
         System.out.printf("Thank you for using Biblioteca!");

@@ -17,6 +17,7 @@ public class MenuService {
     }
 
     public void showMenu() {
+        System.out.println("Menu: ");
         for (String option : userOptions.values()) {
             System.out.println(option);
         }
@@ -30,9 +31,15 @@ public class MenuService {
                     System.out.println("\nSee our list of books available:");
                     System.out.println("_________________________________");
                     for (Book book : getListOfBooks()) {
+                        System.out.print(getListOfBooks().indexOf(book) + " - ");
                         System.out.printf(outputFormatterService.formatOutputBooks(book));
                     }
+                    break;
+
+                case 2:
+                    break;
             }
+
         } else {
             System.out.println("Please select a valid option!");
         }
