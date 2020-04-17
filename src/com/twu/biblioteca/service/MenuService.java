@@ -53,9 +53,8 @@ public class MenuService {
                 case 3:
                     System.out.println("Inform the name of the book you want to return:");
                     String name = scanner.nextLine();
-                    libraryService.returnBook(name);
-
-                    System.out.println("Thank you for returning the book.");
+                    String message = libraryService.returnBook(name);
+                    System.out.println(message);
                     break;
             }
 
