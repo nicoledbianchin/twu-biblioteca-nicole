@@ -12,7 +12,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 
-public class LibraryServiceTest {
+public class LibraryServiceBookTest {
 
     private ArrayList<Book> expectedList;
     private LibraryService libraryService = new LibraryService();
