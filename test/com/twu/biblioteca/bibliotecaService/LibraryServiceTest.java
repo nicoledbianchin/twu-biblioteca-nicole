@@ -85,4 +85,25 @@ public class LibraryServiceTest {
         Assert.assertThat(libraryService.getListOfLendedBooks().get(0), is(equalTo(book)));
     }
 
+    @Test
+    public void shouldRemoveBookFromListOfLendedBooks() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addLendedBook(book);
+
+        libraryService.returnBook("Eu, Robô");
+
+        Assert.assertTrue(libraryService.getListOfLendedBooks().isEmpty());
+    }
+
+    @Test
+    public void shouldRemoveBookFromListOfLendedBooksAndAddInListOfAvailableBooks() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addLendedBook(book);
+
+        libraryService.returnBook("Eu, Robô");
+
+        Assert.assertTrue(libraryService.getListOfLendedBooks().isEmpty());
+        Assert.assertTrue(libraryService.getListOfAvailableBooks().contains(book));
+    }
+
 }
