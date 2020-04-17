@@ -35,9 +35,14 @@ public class LibraryService {
         return library.getLendedBookByName(name);
     }
 
-    public void returnBook(String name) {
+    public String returnBook(String name) {
         Book lendedBook = getLendedBookByName(name);
-        getListOfLendedBooks().removeIf(book -> book.getName().equalsIgnoreCase(name));
-        addAvailableBook(lendedBook);
+        if (lendedBook == null) {
+            return "That is not a valid book to return";
+        } else {
+            getListOfLendedBooks().removeIf(book -> book.getName().equalsIgnoreCase(name));
+            addAvailableBook(lendedBook);
+            return "Thank you for returning the book.";
+        }
     }
 }
