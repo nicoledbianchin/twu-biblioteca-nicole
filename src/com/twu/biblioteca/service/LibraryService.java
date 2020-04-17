@@ -2,6 +2,7 @@ package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
+import com.twu.biblioteca.domain.Movie;
 
 import java.util.ArrayList;
 
@@ -44,5 +45,9 @@ public class LibraryService {
             addAvailableBook(lendedBook);
             return "Thank you for returning the book.";
         }
+    }
+
+    public ArrayList<Movie> getListOfAvailableMovies() {
+        return library.getListOfAvailableMovies();
     }
 }

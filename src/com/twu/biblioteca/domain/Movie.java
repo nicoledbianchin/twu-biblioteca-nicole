@@ -19,4 +19,8 @@ public class Movie {
         this.director = director;
         this.publishedYear = publishedYear;
     }
+
+    public String getName() {
+        return name;
+    }
 }
