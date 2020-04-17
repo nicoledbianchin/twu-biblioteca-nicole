@@ -30,7 +30,21 @@ public class LibraryServiceMovieTest {
     @Test
     public void shouldReturnListOfMovies() {
         for (int i = 0; i < expectedList.size(); i++) {
-            Assert.assertThat(list.get(i).getName(), is(equals(expectedList.get(i).getName())));
+            Assert.assertEquals(list.get(i).getName(), expectedList.get(i).getName());
+        }
+    }
+
+    @Test
+    public void shouldHaveDirectorPerBook() {
+        for (int i = 0; i < expectedList.size(); i++) {
+            Assert.assertEquals(list.get(i).getDirector(), expectedList.get(i).getDirector());
+        }
+    }
+
+    @Test
+    public void shouldHavePublishedYearPerBook() {
+        for (int i = 0; i < expectedList.size(); i++) {
+            Assert.assertEquals(list.get(i).getPublishedYear(), expectedList.get(i).getPublishedYear());
         }
     }
 }
