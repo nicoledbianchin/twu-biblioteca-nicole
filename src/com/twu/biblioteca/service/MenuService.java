@@ -42,6 +42,8 @@ public class MenuService {
                     System.out.println("Inform the id of the book you want to check out: ");
                     int id = scanner.nextInt() - 1;
                     libraryService.checkOutBook(id);
+
+                    System.out.println("Thank you! Enjoy the book.");
                     break;
             }
 
