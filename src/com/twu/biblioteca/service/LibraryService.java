@@ -23,7 +23,21 @@ public class LibraryService {
         addLendedBook(newLendedBook);
     }
 
-    public void addLendedBook(Book book){
-           library.addLendedBook(book);
+    public void addLendedBook(Book book) {
+        library.addLendedBook(book);
+    }
+
+    public void addAvailableBook(Book book) {
+        library.addAvailableBook(book);
+    }
+
+    public Book getLendedBookByName(String name) {
+        return library.getLendedBookByName(name);
+    }
+
+    public void returnBook(String name) {
+        Book lendedBook = getLendedBookByName(name);
+        getListOfLendedBooks().removeIf(book -> book.getName().equalsIgnoreCase(name));
+        addAvailableBook(lendedBook);
     }
 }

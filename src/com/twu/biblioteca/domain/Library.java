@@ -25,7 +25,21 @@ public class Library {
         return listOfLendedBooks;
     }
 
-    public void addLendedBook(Book book){
+    public void addLendedBook(Book book) {
         listOfLendedBooks.add(book);
+    }
+
+    public void addAvailableBook(Book book) {
+        listOfAvailableBooks.add(book);
+    }
+
+    public Book getLendedBookByName(String name) {
+        Book lendedBook = null;
+        for (Book book : listOfLendedBooks) {
+            if (book.getName().equalsIgnoreCase(name)) {
+                lendedBook = book;
+            }
+        }
+        return lendedBook;
     }
 }
