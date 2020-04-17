@@ -32,8 +32,8 @@ public class MenuService {
                 case 1:
                     System.out.println("\nSee our list of books available:");
                     System.out.println("_________________________________");
-                    for (Book book : getListOfBooks()) {
-                        System.out.print((getListOfBooks().indexOf(book) + 1) + " - ");
+                    for (Book book : getListOfAvailableBooks()) {
+                        System.out.print((getListOfAvailableBooks().indexOf(book) + 1) + " - ");
                         System.out.printf(outputFormatterService.formatOutputBooks(book));
                     }
                     break;
@@ -50,7 +50,7 @@ public class MenuService {
         }
     }
 
-    public ArrayList<Book> getListOfBooks() {
-        return libraryService.getListOfBooks();
+    public ArrayList<Book> getListOfAvailableBooks() {
+        return libraryService.getListOfAvailableBooks();
     }
 }

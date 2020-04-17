@@ -8,11 +8,22 @@ import java.util.ArrayList;
 public class LibraryService {
     private Library library = new Library();
 
-    public ArrayList<Book> getListOfBooks() {
-        return library.getListOfBooks();
+    public ArrayList<Book> getListOfAvailableBooks() {
+        return library.getListOfAvailableBooks();
+    }
+
+    public ArrayList<Book> getListOfLendedBooks() {
+        return library.getListOfLendedBooks();
     }
 
     public void checkOutBook(int id) {
-        getListOfBooks().remove(id);
+        Book newLendedBook = library.getListOfAvailableBooks().get(id);
+        getListOfAvailableBooks().remove(id);
+
+        addLendedBook(newLendedBook);
+    }
+
+    public void addLendedBook(Book book){
+           library.addLendedBook(book);
     }
 }
