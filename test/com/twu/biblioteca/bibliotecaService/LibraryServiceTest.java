@@ -106,4 +106,24 @@ public class LibraryServiceTest {
         Assert.assertTrue(libraryService.getListOfAvailableBooks().contains(book));
     }
 
+    @Test
+    public void shouldReturnSuccessflMessageToReturnValidBook() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addLendedBook(book);
+
+        String message = libraryService.returnBook("Eu, Robô");
+
+        Assert.assertThat(message, is(equalTo("Thank you for returning the book.")));
+    }
+
+    @Test
+    public void shouldReturnUnsuccessfulMessageToReturnUnvalidBook() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addAvailableBook(book);
+
+        String message = libraryService.returnBook("Other Name");
+
+        Assert.assertThat(message, is(equalTo("That is not a valid book to return")));
+    }
+
 }
