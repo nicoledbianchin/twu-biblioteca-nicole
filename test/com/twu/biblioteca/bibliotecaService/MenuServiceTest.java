@@ -28,7 +28,7 @@ public class MenuServiceTest {
 
     @Test
     public void shouldReturnListOfBooks() {
-        ArrayList<Book> list = menuService.getListOfBooks();
+        ArrayList<Book> list = menuService.getListOfAvailableBooks();
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
         }

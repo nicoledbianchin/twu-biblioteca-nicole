@@ -16,7 +16,7 @@ public class LibraryServiceTest {
 
     private ArrayList<Book> expectedList;
     private LibraryService libraryService = new LibraryService();
-    private ArrayList<Book> list = libraryService.getListOfBooks();
+    private ArrayList<Book> list = libraryService.getListOfAvailableBooks();
 
     @Before
     public void init() {
@@ -65,6 +65,24 @@ public class LibraryServiceTest {
         libraryService.checkOutBook(0);
 
         Assert.assertThat(list.get(0).getName(), is(equalTo(expectedName)));
+    }
+
+    @Test
+    public void shouldPopulateListOfLandedBooks() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+
+        libraryService.addLendedBook(book);
+
+        Assert.assertThat(libraryService.getListOfLendedBooks().get(0), is(equalTo(book)));
+    }
+
+    @Test
+    public void shouldRemoveBookFromAvailableListAndAddInLandedList() {
+        Book book = list.get(0);
+        libraryService.checkOutBook(0);
+
+        Assert.assertThat(list.get(0), is(not(equalTo(book))));
+        Assert.assertThat(libraryService.getListOfLendedBooks().get(0), is(equalTo(book)));
     }
 
 }
