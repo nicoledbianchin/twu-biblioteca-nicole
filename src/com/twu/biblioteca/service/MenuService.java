@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class MenuService {
     private LibraryService libraryService = new LibraryService();
-    OutputFormatterService outputFormatterService = new OutputFormatterService();
+    private OutputFormatterService outputFormatterService = new OutputFormatterService();
     private Map<Integer, String> userOptions = new HashMap<>();
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public MenuService() {
         userOptions.put(1, "1 - List of books");
