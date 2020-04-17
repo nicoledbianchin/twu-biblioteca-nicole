@@ -16,7 +16,8 @@ public class MenuService {
     public MenuService() {
         userOptions.put(1, "1 - List of books");
         userOptions.put(2, "2 - Check out book");
-        userOptions.put(3, "3 - Exit");
+        userOptions.put(3, "3 - Return book");
+        userOptions.put(4, "4 - Exit");
     }
 
     public void showMenu() {
@@ -47,6 +48,12 @@ public class MenuService {
                     } catch (Exception exception) {
                         System.out.println("Sorry, that book is not available.");
                     }
+                    scanner.nextLine();
+                    break;
+                case 3:
+                    System.out.println("Inform the name of the book you want to return:");
+                    String name = scanner.nextLine();
+                    libraryService.returnBook(name);
                     break;
             }
 
