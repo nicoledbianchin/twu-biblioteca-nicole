@@ -18,6 +18,7 @@ public class Movie {
         this.name = name;
         this.director = director;
         this.publishedYear = publishedYear;
+        this.rate = -1;
     }
 
     public String getName() {
@@ -30,5 +31,9 @@ public class Movie {
 
     public int getPublishedYear() {
         return publishedYear;
+    }
+
+    public int getRate() {
+        return rate;
     }
 }
