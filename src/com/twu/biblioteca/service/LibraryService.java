@@ -5,6 +5,7 @@ import com.twu.biblioteca.domain.Library;
 import com.twu.biblioteca.domain.Movie;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class LibraryService {
     private Library library = new Library();
@@ -49,5 +50,20 @@ public class LibraryService {
 
     public ArrayList<Movie> getListOfAvailableMovies() {
         return library.getListOfAvailableMovies();
+    }
+
+    public void checkOutMovie(int id) {
+        Movie newLendedMovie = library.getListOfAvailableMovies().get(id);
+        getListOfAvailableMovies().remove(id);
+
+        addLendedMovie(newLendedMovie);
+    }
+
+    public void addLendedMovie(Movie movie) {
+        library.addLendedMovie(movie);
+    }
+
+    public ArrayList<Movie> getListOfLendedMovies() {
+        return library.getListOfLendedMovies();
     }
 }

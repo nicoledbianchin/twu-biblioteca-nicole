@@ -1,5 +1,7 @@
 package com.twu.biblioteca.domain;
 
+import com.sun.deploy.net.MessageHeader;
+
 import java.util.ArrayList;
 
 public class Library {
@@ -7,6 +9,7 @@ public class Library {
     private ArrayList<Book> listOfAvailableBooks = new ArrayList();
     private ArrayList<Book> listOfLendedBooks = new ArrayList<>();
     private ArrayList<Movie> listOfAvailableMovies = new ArrayList<>();
+    private ArrayList<Movie> listOfLendedMovies = new ArrayList<>();
 
     public Library() {
         listOfAvailableBooks.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
@@ -53,5 +56,13 @@ public class Library {
 
     public ArrayList<Movie> getListOfAvailableMovies() {
         return listOfAvailableMovies;
+    }
+
+    public void addLendedMovie(Movie movie) {
+        listOfLendedMovies.add(movie);
+    }
+
+    public ArrayList<Movie> getListOfLendedMovies() {
+        return listOfLendedMovies;
     }
 }
