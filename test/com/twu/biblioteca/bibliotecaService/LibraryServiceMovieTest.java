@@ -89,4 +89,14 @@ public class LibraryServiceMovieTest {
         Assert.assertTrue(libraryService.getListOfLendedMovies().contains(movie));
     }
 
+    @Test
+    public void shouldRemoveBookFromLendedList() {
+        Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
+        libraryService.addLendedMovie(movie);
+
+        libraryService.returnMovie("Matilda");
+
+        Assert.assertFalse(libraryService.getListOfLendedMovies().contains(movie));
+    }
+
 }
