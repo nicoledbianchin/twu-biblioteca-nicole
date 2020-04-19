@@ -40,7 +40,7 @@ public class LibraryService {
     public String returnBook(String name) {
         Book lendedBook = getLendedBookByName(name);
         if (lendedBook == null) {
-            return "That is not a valid book to return";
+            return "That is not a valid book to return.";
         } else {
             getListOfLendedBooks().removeIf(book -> book.getName().equalsIgnoreCase(name));
             addAvailableBook(lendedBook);
@@ -74,11 +74,11 @@ public class LibraryService {
     public String returnMovie(String name) {
         Movie lendedMovie = getLendedMovieByName(name);
         if (lendedMovie == null) {
-            return "That is not a valid movie to return";
+            return "That is not a valid movie to return.";
         } else {
             getListOfLendedMovies().removeIf(book -> book.getName().equalsIgnoreCase(name));
             addAvailableMovie(lendedMovie);
-            return "Thank you for returning the book.";
+            return "Thank you for returning the movie.";
         }
     }
 
