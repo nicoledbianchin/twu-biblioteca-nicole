@@ -19,7 +19,9 @@ public class MenuService {
         userOptions.put(2, "2 - Check out book");
         userOptions.put(3, "3 - Return book");
         userOptions.put(4, "4 - Show list of available movies");
-        userOptions.put(5, "5 - Exit");
+        userOptions.put(5, "5 - Check out movie");
+        userOptions.put(6, "6 - Return Movie");
+        userOptions.put(7, "7 - Exit");
     }
 
     public void showMenu() {
@@ -54,9 +56,9 @@ public class MenuService {
                     break;
                 case 3:
                     System.out.println("Inform the name of the book you want to return:");
-                    String name = scanner.nextLine();
-                    String message = libraryService.returnBook(name);
-                    System.out.println(message);
+                    String nameBook = scanner.nextLine();
+                    String messageBook = libraryService.returnBook(nameBook);
+                    System.out.println(messageBook);
                     break;
                 case 4:
                     System.out.println("\nSee our list of movies available:");
@@ -65,6 +67,23 @@ public class MenuService {
                         System.out.print((getListOfAvailableMovies().indexOf(movie) + 1) + " - ");
                         System.out.printf(outputFormatterService.formatOutputMovies(movie));
                     }
+                    break;
+                case 5:
+                    System.out.println("Inform the id of the movie you want to check out: ");
+                    int idMovie = scanner.nextInt() - 1;
+                    try {
+                        libraryService.checkOutMovie(idMovie);
+                        System.out.println("Thank you! Enjoy the movie.");
+                    } catch (Exception exception) {
+                        System.out.println("Sorry, that movie is not available.");
+                    }
+                    scanner.nextLine();
+                    break;
+                case 6:
+                    System.out.println("Inform the name of the movie you want to return:");
+                    String nameMovie = scanner.nextLine();
+                    String messageMovie = libraryService.returnMovie(nameMovie);
+                    System.out.println(messageMovie);
                     break;
             }
 
