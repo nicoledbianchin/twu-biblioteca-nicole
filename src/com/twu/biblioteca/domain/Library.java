@@ -1,82 +1,58 @@
 package com.twu.biblioteca.domain;
 
 import com.sun.deploy.net.MessageHeader;
+import com.twu.biblioteca.models.LibraryProduct;
 
 import java.util.ArrayList;
 
 public class Library {
 
-    private ArrayList<Book> listOfAvailableBooks = new ArrayList();
-    private ArrayList<Book> listOfLendedBooks = new ArrayList<>();
-    private ArrayList<Movie> listOfAvailableMovies = new ArrayList<>();
-    private ArrayList<Movie> listOfLendedMovies = new ArrayList<>();
+    
+    private final ArrayList<LibraryProduct> listOfAvailableProducts = new ArrayList<>();
+    private final ArrayList<LibraryProduct> listOfLendedProducts = new ArrayList<>();
+    
 
     public Library() {
-        listOfAvailableBooks.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowling", 1998));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Prisioner of Azkaban", "J.K. Rowling", 1999));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Globet of Fire", "J.K. Rowling", 2000));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", 2003));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", 2005));
-        listOfAvailableBooks.add(new Book("Harry Potter and the Deathly Hollows", "J.K. Rowling", 2007));
+        listOfAvailableProducts.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
+        listOfAvailableProducts.add(new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowling", 1998));
+        listOfAvailableProducts.add(new Book("Harry Potter and the Prisioner of Azkaban", "J.K. Rowling", 1999));
+        listOfAvailableProducts.add(new Book("Harry Potter and the Globet of Fire", "J.K. Rowling", 2000));
+        listOfAvailableProducts.add(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", 2003));
+        listOfAvailableProducts.add(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", 2005));
+        listOfAvailableProducts.add(new Book("Harry Potter and the Deathly Hollows", "J.K. Rowling", 2007));
 
-        listOfAvailableMovies.add(new Movie("The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", 2002, 9));
-        listOfAvailableMovies.add(new Movie("The Lord of the Rings: The Two Towers", "Peter Jackson", 2002, 10));
-        listOfAvailableMovies.add(new Movie("The Lord of the Rings: The Return of the King", "Peter Jackson", 2003, 9));
-        listOfAvailableMovies.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
-        listOfAvailableMovies.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
-        listOfAvailableMovies.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
+        listOfAvailableProducts.add(new Movie("The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", 2002, 9));
+        listOfAvailableProducts.add(new Movie("The Lord of the Rings: The Two Towers", "Peter Jackson", 2002, 10));
+        listOfAvailableProducts.add(new Movie("The Lord of the Rings: The Return of the King", "Peter Jackson", 2003, 9));
+        listOfAvailableProducts.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
+        listOfAvailableProducts.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
+        listOfAvailableProducts.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
     }
 
-    public ArrayList<Book> getListOfAvailableBooks() {
-        return listOfAvailableBooks;
+    public ArrayList<LibraryProduct> getListOfAvailableBooks() {
+        return listOfAvailableProducts;
     }
 
-    public ArrayList<Book> getListOfLendedBooks() {
-        return listOfLendedBooks;
+    public ArrayList<LibraryProduct> getListOfLendedProducts() {
+        return listOfLendedProducts;
     }
 
-    public void addLendedBook(Book book) {
-        listOfLendedBooks.add(book);
+    public void addLendedProduct(LibraryProduct libraryProduct) {
+        listOfLendedProducts.add(libraryProduct);
     }
 
-    public void addAvailableBook(Book book) {
-        listOfAvailableBooks.add(book);
+    public void addAvailableProduct(LibraryProduct libraryProduct) {
+        listOfAvailableProducts.add(libraryProduct);
     }
 
-    public Book getLendedBookByName(String name) {
-        Book lendedBook = null;
-        for (Book book : listOfLendedBooks) {
-            if (book.getName().equalsIgnoreCase(name)) {
-                lendedBook = book;
+    public LibraryProduct getLendedProductByName(String name) {
+        LibraryProduct lendedProduct = null;
+        for (LibraryProduct libraryProduct : listOfLendedProducts) {
+            if (libraryProduct.getName().equalsIgnoreCase(name)) {
+                lendedProduct = libraryProduct;
             }
         }
-        return lendedBook;
+        return lendedProduct;
     }
 
-    public ArrayList<Movie> getListOfAvailableMovies() {
-        return listOfAvailableMovies;
-    }
-
-    public void addLendedMovie(Movie movie) {
-        listOfLendedMovies.add(movie);
-    }
-
-    public ArrayList<Movie> getListOfLendedMovies() {
-        return listOfLendedMovies;
-    }
-
-    public Movie getLendedMovieByName(String name) {
-        Movie lendedMovie = null;
-        for (Movie movie : listOfLendedMovies) {
-            if(movie.getName().equalsIgnoreCase(name)) {
-                lendedMovie = movie;
-            }
-        }
-        return lendedMovie;
-    }
-
-    public void addAvailableMovie(Movie lendedMovie) {
-        listOfAvailableMovies.add(lendedMovie);
-    }
 }
