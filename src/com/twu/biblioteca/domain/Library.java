@@ -29,7 +29,7 @@ public class Library {
         listOfAvailableProducts.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
     }
 
-    public ArrayList<LibraryProduct> getListOfAvailableBooks() {
+    public ArrayList<LibraryProduct> getListOfAvailableProducts() {
         return listOfAvailableProducts;
     }
 
@@ -55,4 +55,13 @@ public class Library {
         return lendedProduct;
     }
 
+    public LibraryProduct getListOfAvailableProductByName(String name) {
+        LibraryProduct availableProduct = null;
+        for (LibraryProduct libraryProduct : listOfAvailableProducts) {
+            if(libraryProduct.getName().equalsIgnoreCase(name)) {
+                availableProduct = libraryProduct;
+            }
+        }
+         return availableProduct;
+    }
 }
