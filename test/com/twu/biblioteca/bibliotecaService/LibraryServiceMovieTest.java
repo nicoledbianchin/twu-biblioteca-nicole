@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 
 public class LibraryServiceMovieTest {
 
@@ -54,4 +54,39 @@ public class LibraryServiceMovieTest {
             Assert.assertEquals(list.get(i).getRate(), expectedList.get(i).getRate());
         }
     }
+
+    @Test
+    public void shouldAddLendedMovieToTheList() {
+        Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
+
+        libraryService.addLendedMovie(movie);
+
+        Assert.assertThat(libraryService.getListOfLendedMovies().get(0), is(equalTo(movie)));
+    }
+
+    @Test
+    public void shouldDecreaseListSizeByOne() {
+        int expectedSize = list.size() - 1;
+        libraryService.checkOutMovie(0);
+
+        Assert.assertThat(list.size(), is(expectedSize));
+    }
+
+    @Test
+    public void shouldRemoveMovieFromAvailableList() {
+        libraryService.checkOutMovie(0);
+
+        Assert.assertThat(libraryService.getListOfLendedMovies().get(0), is(not(equalTo(list.get(0)))));
+    }
+
+    @Test
+    public void shouldRemoveMovieFromAvailableAndAddToLended() {
+        Movie movie = list.get(0);
+
+        libraryService.checkOutMovie(0);
+
+        Assert.assertThat(list.get(0), is(not(equalTo(movie))));
+        Assert.assertThat(libraryService.getListOfLendedMovies().get(0), is(equalTo(movie)));
+    }
+
 }
