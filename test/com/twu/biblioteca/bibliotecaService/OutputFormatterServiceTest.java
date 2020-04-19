@@ -34,11 +34,11 @@ public class OutputFormatterServiceTest {
     }
 
         @Test
-    public void shouldReturnStringFormattedWothoutRate() {
+    public void shouldReturnStringFormattedWithoutRate() {
         Movie movie = new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014);
 
         String actualString = outputFormatterService.formatOutputMovies(movie);
-        String expectedString = "The Hobbit: The Battle of the Five Armies, directed by Peter Jackson, released in 2014\n";
+        String expectedString = "The Hobbit: The Battle of the Five Armies, directed by Peter Jackson, released in 2014, unrated\n";
 
         Assert.assertThat(actualString, is(equalTo(expectedString)));
     }

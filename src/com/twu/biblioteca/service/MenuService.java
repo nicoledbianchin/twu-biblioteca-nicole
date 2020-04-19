@@ -18,7 +18,7 @@ public class MenuService {
         userOptions.put(1, "1 - List of books");
         userOptions.put(2, "2 - Check out book");
         userOptions.put(3, "3 - Return book");
-        userOptions.put(4, "4 -Show list of available movies");
+        userOptions.put(4, "4 - Show list of available movies");
         userOptions.put(5, "5 - Exit");
     }
 

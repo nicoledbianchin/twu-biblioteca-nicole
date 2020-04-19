@@ -11,7 +11,7 @@ public class OutputFormatterService {
 
     public String formatOutputMovies(Movie movie){
         if (movie.getRate() == -1) {
-            return String.format("%s, directed by %s, released in %d\n", movie.getName(), movie.getDirector(), movie.getPublishedYear());
+            return String.format("%s, directed by %s, released in %d, unrated\n", movie.getName(), movie.getDirector(), movie.getPublishedYear());
         } else {
             return String.format("%s, directed by %s, released in %d, rating: %d\n", movie.getName(), movie.getDirector(), movie.getPublishedYear(), movie.getRate());
         }
