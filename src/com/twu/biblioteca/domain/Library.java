@@ -65,4 +65,18 @@ public class Library {
     public ArrayList<Movie> getListOfLendedMovies() {
         return listOfLendedMovies;
     }
+
+    public Movie getLendedMovieByName(String name) {
+        Movie lendedMovie = null;
+        for (Movie movie : listOfLendedMovies) {
+            if(movie.getName().equalsIgnoreCase(name)) {
+                lendedMovie = movie;
+            }
+        }
+        return lendedMovie;
+    }
+
+    public void addAvailableMovie(Movie lendedMovie) {
+        listOfAvailableMovies.add(lendedMovie);
+    }
 }

@@ -33,7 +33,7 @@ public class LibraryService {
         library.addAvailableBook(book);
     }
 
-    public Book getLendedBookByName(String name) {
+    private Book getLendedBookByName(String name) {
         return library.getLendedBookByName(name);
     }
 
@@ -66,4 +66,24 @@ public class LibraryService {
     public ArrayList<Movie> getListOfLendedMovies() {
         return library.getListOfLendedMovies();
     }
+
+    private Movie getLendedMovieByName(String name) {
+        return library.getLendedMovieByName(name);
+    }
+
+    public String returnMovie(String name) {
+        Movie lendedMovie = getLendedMovieByName(name);
+        if (lendedMovie == null) {
+            return "That is not a valid movie to return";
+        } else {
+            getListOfLendedMovies().removeIf(book -> book.getName().equalsIgnoreCase(name));
+            addAvailableMovie(lendedMovie);
+            return "Thank you for returning the book.";
+        }
+    }
+
+    private void addAvailableMovie(Movie lendedMovie) {
+        library.addAvailableMovie(lendedMovie);
+    }
+
 }
