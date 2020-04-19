@@ -76,7 +76,7 @@ public class LibraryServiceMovieTest {
     public void shouldRemoveMovieFromAvailableList() {
         libraryService.checkOutMovie(0);
 
-        Assert.assertThat(libraryService.getListOfLendedMovies().get(0), is(not(equalTo(list.get(0)))));
+        Assert.assertFalse(libraryService.getListOfAvailableBooks().contains(list.get(0)));
     }
 
     @Test
@@ -85,8 +85,8 @@ public class LibraryServiceMovieTest {
 
         libraryService.checkOutMovie(0);
 
-        Assert.assertThat(list.get(0), is(not(equalTo(movie))));
-        Assert.assertThat(libraryService.getListOfLendedMovies().get(0), is(equalTo(movie)));
+        Assert.assertFalse(list.contains(movie));
+        Assert.assertTrue(libraryService.getListOfLendedMovies().contains(movie));
     }
 
 }
