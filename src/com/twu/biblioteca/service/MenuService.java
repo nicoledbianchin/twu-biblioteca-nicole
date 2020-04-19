@@ -1,6 +1,7 @@
 package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Movie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,8 @@ public class MenuService {
         userOptions.put(1, "1 - List of books");
         userOptions.put(2, "2 - Check out book");
         userOptions.put(3, "3 - Return book");
-        userOptions.put(4, "4 - Exit");
+        userOptions.put(4, "4 -Show list of available movies");
+        userOptions.put(5, "5 - Exit");
     }
 
     public void showMenu() {
@@ -56,6 +58,14 @@ public class MenuService {
                     String message = libraryService.returnBook(name);
                     System.out.println(message);
                     break;
+                case 4:
+                    System.out.println("\nSee our list of movies available:");
+                    System.out.println("_________________________________");
+                    for (Movie movie : getListOfAvailableMovies()) {
+                        System.out.print((getListOfAvailableMovies().indexOf(movie) + 1) + " - ");
+                        System.out.printf(outputFormatterService.formatOutputMovies(movie));
+                    }
+                    break;
             }
 
         } else {
@@ -66,4 +76,9 @@ public class MenuService {
     public ArrayList<Book> getListOfAvailableBooks() {
         return libraryService.getListOfAvailableBooks();
     }
+
+    public ArrayList<Movie> getListOfAvailableMovies() {
+        return libraryService.getListOfAvailableMovies();
+    }
+
 }
