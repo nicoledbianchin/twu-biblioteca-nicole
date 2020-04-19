@@ -123,7 +123,7 @@ public class LibraryServiceBookTest {
 
         String message = libraryService.returnBook("Other Name");
 
-        Assert.assertThat(message, is(equalTo("That is not a valid book to return")));
+        Assert.assertThat(message, is(equalTo("That is not a valid book to return.")));
     }
 
 }

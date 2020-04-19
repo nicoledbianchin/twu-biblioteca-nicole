@@ -99,4 +99,35 @@ public class LibraryServiceMovieTest {
         Assert.assertFalse(libraryService.getListOfLendedMovies().contains(movie));
     }
 
+    @Test
+    public void shouldRemoveBookFromListOfLendedAndAddInListOfAvailable() {
+        Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
+        libraryService.addLendedMovie(movie);
+
+        libraryService.returnMovie("Matilda");
+
+        Assert.assertTrue(libraryService.getListOfLendedMovies().isEmpty());
+        Assert.assertTrue(libraryService.getListOfAvailableMovies().contains(movie));
+    }
+
+    @Test
+    public void shouldReturnSuccessfulMessageToReturnValidBook() {
+        Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
+        libraryService.addLendedMovie(movie);
+
+        String message = libraryService.returnMovie("Matilda");
+
+        Assert.assertThat(message, is(equalTo("Thank you for returning the movie.")));
+    }
+
+    @Test
+    public void shouldReturnUnsuccessfulMessageToReturnInvalidBook() {
+        Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
+        libraryService.addLendedMovie(movie);
+
+        String message = libraryService.returnMovie("Other Name");
+
+        Assert.assertThat(message, is(equalTo("That is not a valid movie to return.")));
+    }
+
 }
