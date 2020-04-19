@@ -20,9 +20,9 @@ public class Library {
         listOfAvailableMovies.add(new Movie("The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", 2002, 9));
         listOfAvailableMovies.add(new Movie("The Lord of the Rings: The Two Towers", "Peter Jackson", 2002, 10));
         listOfAvailableMovies.add(new Movie("The Lord of the Rings: The Return of the King", "Peter Jackson", 2003, 9));
-        listOfAvailableMovies.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012, 9));
-        listOfAvailableMovies.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013, 9));
-        listOfAvailableMovies.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014, 9));
+        listOfAvailableMovies.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
+        listOfAvailableMovies.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
+        listOfAvailableMovies.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
     }
 
     public ArrayList<Book> getListOfAvailableBooks() {
