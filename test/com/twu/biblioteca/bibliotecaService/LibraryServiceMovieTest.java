@@ -22,9 +22,9 @@ public class LibraryServiceMovieTest {
         expectedList.add(new Movie("The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", 2002, 9));
         expectedList.add(new Movie("The Lord of the Rings: The Two Towers", "Peter Jackson", 2002, 10));
         expectedList.add(new Movie("The Lord of the Rings: The Return of the King", "Peter Jackson", 2003, 9));
-        expectedList.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012, 9));
-        expectedList.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013, 9));
-        expectedList.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014, 9));
+        expectedList.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
+        expectedList.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
+        expectedList.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
     }
 
     @Test
@@ -45,6 +45,13 @@ public class LibraryServiceMovieTest {
     public void shouldHavePublishedYearPerBook() {
         for (int i = 0; i < expectedList.size(); i++) {
             Assert.assertEquals(list.get(i).getPublishedYear(), expectedList.get(i).getPublishedYear());
+        }
+    }
+
+    @Test
+    public void shouldReturnRate() {
+        for (int i = 0; i < expectedList.size(); i++) {
+            Assert.assertEquals(list.get(i).getRate(), expectedList.get(i).getRate());
         }
     }
 }
