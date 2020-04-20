@@ -39,15 +39,16 @@ public class LibraryService {
         return library.getLendedProductByName(name);
     }
 
-    public String returnProduct(String name) {
+    public boolean returnProduct(String name) {
         LibraryProduct lendedProduct = getLendedProductByName(name);
-        try {
-            getListOfLendedProducts().removeIf(product -> product.getName().equalsIgnoreCase(name));
+        if (lendedProduct == null) {
+            return false;
+        } else {
+            getListOfLendedProducts().remove(lendedProduct);
             addAvailableProduct(lendedProduct);
-            return "Thank you for returning the " + lendedProduct.getClass().getSimpleName().toLowerCase() + ".";
-        } catch (NullPointerException exception) {
-            return "That is not a valid product to return.";
+            return true;
         }
+
     }
 
 }

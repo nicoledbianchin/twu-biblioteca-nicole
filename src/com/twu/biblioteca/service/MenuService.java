@@ -63,8 +63,12 @@ public class MenuService {
                 case 3:
                     System.out.println("Inform the name of the book you want to return:");
                     String nameBook = scanner.nextLine();
-                    String messageBook = libraryService.returnProduct(nameBook);
-                    System.out.println(messageBook);
+                    boolean validBookToReturn = libraryService.returnProduct(nameBook);
+                    if (validBookToReturn) {
+                        System.out.println("Thank you! Enjoy the book.");
+                    } else {
+                        System.out.println("Sorry, that book is not available.");
+                    }
                     break;
                 case 4:
                     System.out.println("\nSee our list of movies available:");
@@ -87,8 +91,12 @@ public class MenuService {
                 case 6:
                     System.out.println("Inform the name of the movie you want to return:");
                     String nameMovieReturn = scanner.nextLine();
-                    String messageMovie = libraryService.returnProduct(nameMovieReturn);
-                    System.out.println(messageMovie);
+                    boolean validMovieToReturn = libraryService.returnProduct(nameMovieReturn);
+                    if (validMovieToReturn) {
+                        System.out.println("Thank you for returning the movie.");
+                    } else {
+                        System.out.println("That is not a valid movie to return.");
+                    }
                     break;
             }
         } else {
