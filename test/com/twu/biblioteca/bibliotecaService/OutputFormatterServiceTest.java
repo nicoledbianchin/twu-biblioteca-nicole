@@ -17,7 +17,7 @@ public class OutputFormatterServiceTest {
     public void shouldReturnStringFormattedWithBookInformations() {
         Book book = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997);
 
-        String actualString = outputFormatterService.formatOutputBooks(book);
+        String actualString = outputFormatterService.formatOutputBook(book);
         String expectedString = "Harry Potter and the Philosopher's Stone, written by J.K. Rowling, published in 1997\n";
 
         Assert.assertThat(actualString, is(equalTo(expectedString)));
