@@ -44,8 +44,8 @@ public class MenuService {
                     System.out.println("\nSee our list of books available:");
                     System.out.println("_________________________________");
                     for (LibraryProduct libraryProduct : getListOfAvailableProduts()) {
-                        if (libraryProduct.getClass().getSimpleName().equals(Book.class.getSimpleName())){
-                        System.out.printf(outputFormatterService.formatOutputBook(libraryProduct));
+                        if (libraryProduct.getClass().getSimpleName().equals(Book.class.getSimpleName())) {
+                            System.out.printf(outputFormatterService.formatOutputBook(libraryProduct));
                         }
                     }
                     break;
@@ -53,13 +53,12 @@ public class MenuService {
                 case 2:
                     System.out.println("Inform the name of the book you want to check out: ");
                     String name = scanner.nextLine();
-                    try {
-                        libraryService.checkOutProduct(name);
+                    boolean validBook = libraryService.checkOutProduct(name);
+                    if (validBook) {
                         System.out.println("Thank you! Enjoy the book.");
-                    } catch (Exception exception) {
+                    } else {
                         System.out.println("Sorry, that book is not available.");
                     }
-                    scanner.nextLine();
                     break;
                 case 3:
                     System.out.println("Inform the name of the book you want to return:");
@@ -72,19 +71,18 @@ public class MenuService {
                     System.out.println("_________________________________");
                     for (LibraryProduct libraryProduct : getListOfAvailableProduts()) {
                         if (libraryProduct.getClass().getSimpleName().equals(Movie.class.getSimpleName()))
-                        System.out.printf(outputFormatterService.formatOutputMovies(libraryProduct));
+                            System.out.printf(outputFormatterService.formatOutputMovies(libraryProduct));
                     }
                     break;
                 case 5:
                     System.out.println("Inform the name of the movie you want to check out: ");
                     String nameMovie = scanner.nextLine();
-                    try {
-                        libraryService.checkOutProduct(nameMovie);
+                    boolean validMovie = libraryService.checkOutProduct(nameMovie);
+                    if (validMovie) {
                         System.out.println("Thank you! Enjoy the movie.");
-                    } catch (Exception exception) {
+                    } else {
                         System.out.println("Sorry, that movie is not available.");
                     }
-                    scanner.nextLine();
                     break;
                 case 6:
                     System.out.println("Inform the name of the movie you want to return:");
@@ -96,6 +94,5 @@ public class MenuService {
         } else {
             System.out.println("Please select a valid option!");
         }
-
     }
 }

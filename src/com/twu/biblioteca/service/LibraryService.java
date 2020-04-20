@@ -16,11 +16,15 @@ public class LibraryService {
         return library.getListOfLendedProducts();
     }
 
-    public void checkOutProduct(String name) {
+    public boolean checkOutProduct(String name) {
         LibraryProduct newLendedProduct = library.getListOfAvailableProductByName(name);
-        getListOfAvailableProducts().remove(newLendedProduct);
-
-        addLendedProduct(newLendedProduct);
+        if (newLendedProduct == null) {
+            return false;
+        } else {
+            getListOfAvailableProducts().remove(newLendedProduct);
+            addLendedProduct(newLendedProduct);
+            return true;
+        }
     }
 
     public void addLendedProduct(LibraryProduct libraryProduct) {
