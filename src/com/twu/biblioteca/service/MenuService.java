@@ -53,7 +53,9 @@ public class MenuService {
                 case 2:
                     System.out.println("Inform the name of the book you want to check out: ");
                     String name = scanner.nextLine();
-                    boolean validBook = libraryService.checkOutProduct(name);
+                    System.out.println("Please, tell us your name:");
+                    String userName = scanner.nextLine();
+                    boolean validBook = libraryService.checkOutProduct(name, userName);
                     if (validBook) {
                         System.out.println("Thank you! Enjoy the book.");
                     } else {
@@ -81,7 +83,9 @@ public class MenuService {
                 case 5:
                     System.out.println("Inform the name of the movie you want to check out: ");
                     String nameMovie = scanner.nextLine();
-                    boolean validMovie = libraryService.checkOutProduct(nameMovie);
+                    System.out.println("Please, tell us your name:");
+                    String username = scanner.nextLine();
+                    boolean validMovie = libraryService.checkOutProduct(nameMovie, username);
                     if (validMovie) {
                         System.out.println("Thank you! Enjoy the movie.");
                     } else {

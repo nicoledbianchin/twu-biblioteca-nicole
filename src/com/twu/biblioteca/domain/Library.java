@@ -9,6 +9,7 @@ public class Library {
     
     private final ArrayList<LibraryProduct> listOfAvailableProducts = new ArrayList<>();
     private final ArrayList<LibraryProduct> listOfLendedProducts = new ArrayList<>();
+    private final ArrayList<User> listOfUsers = new ArrayList<>();
     
 
     public Library() {
@@ -26,6 +27,9 @@ public class Library {
         listOfAvailableProducts.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
         listOfAvailableProducts.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
         listOfAvailableProducts.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
+
+        listOfUsers.add(new User("Nicole"));
+        listOfUsers.add(new User("Amanda"));
     }
 
     public ArrayList<LibraryProduct> getListOfAvailableProducts() {
@@ -62,5 +66,9 @@ public class Library {
             }
         }
          return availableProduct;
+    }
+
+    public ArrayList<User> getListOfUsers() {
+        return listOfUsers;
     }
 }

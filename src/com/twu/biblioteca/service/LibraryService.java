@@ -1,6 +1,7 @@
 package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.domain.Library;
+import com.twu.biblioteca.domain.User;
 import com.twu.biblioteca.models.LibraryProduct;
 
 import java.util.ArrayList;
@@ -16,13 +17,14 @@ public class LibraryService {
         return library.getListOfLendedProducts();
     }
 
-    public boolean checkOutProduct(String name) {
+    public boolean checkOutProduct(String name, String username) {
         LibraryProduct newLendedProduct = library.getListOfAvailableProductByName(name);
         if (newLendedProduct == null) {
             return false;
         } else {
             getListOfAvailableProducts().remove(newLendedProduct);
             addLendedProduct(newLendedProduct);
+            newLendedProduct.setUserName(username);
             return true;
         }
     }
@@ -49,6 +51,18 @@ public class LibraryService {
             return true;
         }
 
+    }
+
+    public String askForLogin() {
+        return "Please, tell us your name:";
+    }
+
+    public ArrayList<User> getListOfUsers() {
+        return library.getListOfUsers();
+    }
+
+    public String getUserCheckoutItem(String name) {
+        return getLendedProductByName(name).getUserName();
     }
 
 }

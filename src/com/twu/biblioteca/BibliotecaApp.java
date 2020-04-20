@@ -4,7 +4,7 @@ import com.twu.biblioteca.service.MenuService;
 
 import java.util.Scanner;
 
-public class BibliotecaApp {
+public class  BibliotecaApp {
 
     public static void main(String[] args) {
         MenuService menuService = new MenuService();

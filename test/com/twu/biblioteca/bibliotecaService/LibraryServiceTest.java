@@ -2,6 +2,7 @@ package com.twu.biblioteca.bibliotecaService;
 
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.domain.User;
 import com.twu.biblioteca.models.LibraryProduct;
 import com.twu.biblioteca.service.LibraryService;
 import org.junit.Assert;
@@ -19,6 +20,7 @@ public class LibraryServiceTest {
     private ArrayList<LibraryProduct> expectedList;
     private LibraryService libraryService = new LibraryService();
     private ArrayList<LibraryProduct> actualList = libraryService.getListOfAvailableProducts();
+    private ArrayList<User> actualListOfUsers = libraryService.getListOfUsers();
 
     @Before
     public void init() {
@@ -37,6 +39,9 @@ public class LibraryServiceTest {
         expectedList.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
         expectedList.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
         expectedList.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
+
+        actualListOfUsers.add(new User("Nicole"));
+        actualListOfUsers.add(new User("Amanda"));
     }
 
     @Test
@@ -69,14 +74,14 @@ public class LibraryServiceTest {
     @Test
     public void shouldDecreaseListSizeByOne() {
         int expectedSize = actualList.size() - 1;
-        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone");
+        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone", null);
 
         Assert.assertThat(actualList.size(), is(expectedSize));
     }
 
     @Test
     public void shouldRemoveProductFromList() {
-        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone");
+        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone", null);
 
         Assert.assertThat(actualList.get(0).getName(), is(not(equalTo("Harry Potter and the Philosopher's Stone"))));
     }
@@ -93,7 +98,7 @@ public class LibraryServiceTest {
     @Test
     public void shouldRemoveBookFromAvailableListAndAddInLandedList() {
         LibraryProduct libraryProduct = actualList.get(0);
-        libraryService.checkOutProduct( "Harry Potter and the Philosopher's Stone");
+        libraryService.checkOutProduct( "Harry Potter and the Philosopher's Stone", null);
 
         Assert.assertFalse(actualList.contains(libraryProduct));
         Assert.assertTrue(libraryService.getListOfLendedProducts().contains(libraryProduct));
@@ -125,14 +130,14 @@ public class LibraryServiceTest {
         Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
         libraryService.addAvailableProduct(book);
 
-        boolean valid = libraryService.checkOutProduct("Eu, Robô");
+        boolean valid = libraryService.checkOutProduct("Eu, Robô", null);
 
         Assert.assertTrue(valid);
     }
 
     @Test
     public void shouldReturnFalseToCheckoutInvalidProduct() {
-        boolean valid = libraryService.checkOutProduct("Eu, Robô");
+        boolean valid = libraryService.checkOutProduct("Eu, Robô", null);
 
         Assert.assertFalse(valid);
     }
@@ -165,6 +170,40 @@ public class LibraryServiceTest {
         boolean valid = libraryService.returnProduct("Other Name");
 
         Assert.assertFalse(valid);
+    }
+
+    @Test
+    public void shouldAskUserNameOnCheckOutItem() {
+        libraryService.checkOutProduct("The Hobbit: The Battle of the Five Armies", null);
+
+        String question = libraryService.askForLogin();
+
+        Assert.assertThat(question, is(equalTo("Please, tell us your name:")));
+    }
+
+    @Test
+    public void shouldReturnUserInformation() {
+        libraryService.getListOfUsers();
+
+        for (int i = 0; i < actualListOfUsers.size(); i++) {
+            Assert.assertThat(libraryService.getListOfUsers(), is(equalTo(actualListOfUsers)));
+        }
+    }
+
+    @Test
+    public void shouldReturnUserName() {
+        for (int i = 0; i < actualListOfUsers.size(); i++) {
+            Assert.assertThat(libraryService.getListOfUsers().get(i).getUserName(), is(equalTo(actualListOfUsers.get(i).getUserName())));
+        }
+    }
+
+    @Test
+    public void shouldReturnUserWhoCheckedOutTheBook() {
+        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone", "Nicole");
+
+        String actualName = libraryService.getUserCheckoutItem("Harry Potter and the Philosopher's Stone");
+
+        Assert.assertThat(actualName, is(equalTo("Nicole")));
     }
 
 }

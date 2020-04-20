@@ -8,12 +8,14 @@ public class Movie implements LibraryProduct {
     private String director;
     private int publishedYear;
     private int rate;
+    private String username;
 
     public Movie(String name, String director, int publishedYear, int rate) {
         this.name = name;
         this.director = director;
         this.publishedYear = publishedYear;
         this.rate = rate;
+        username = null;
     }
 
     public Movie(String name, String director, int publishedYear) {
@@ -21,6 +23,7 @@ public class Movie implements LibraryProduct {
         this.director = director;
         this.publishedYear = publishedYear;
         this.rate = -1;
+        username = null;
     }
 
     @Override
@@ -41,5 +44,15 @@ public class Movie implements LibraryProduct {
     @Override
     public int getRate() {
         return rate;
+    }
+
+    @Override
+    public void setUserName(String username){
+        this.username = username;
+    }
+
+    @Override
+    public String getUserName() {
+        return username;
     }
 }

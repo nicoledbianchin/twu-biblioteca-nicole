@@ -7,6 +7,7 @@ public class Book implements LibraryProduct {
     private String author;
     private String name;
     private int publishedYear;
+    private String username;
 
     public Book(String name, String author, int publishedYear) {
         this.name = name;
@@ -32,5 +33,15 @@ public class Book implements LibraryProduct {
     @Override
     public int getRate() {
         return -1;
+    }
+
+    @Override
+    public void setUserName(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String getUserName() {
+        return username;
     }
 }

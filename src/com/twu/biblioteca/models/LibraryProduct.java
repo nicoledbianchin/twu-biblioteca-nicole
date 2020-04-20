@@ -5,4 +5,6 @@ public interface LibraryProduct {
     String getAuthorOrDirector();
     int getPublishedYear();
     int getRate();
+    void setUserName(String username);
+    String getUserName();
 }
