@@ -139,15 +139,15 @@ public class LibraryServiceTest {
 
         Assert.assertThat(message, is(equalTo("Thank you for returning the movie.")));
     }
-//
-//    @Test
-//    public void shouldReturnUnsuccessfulMessageToReturnUnvalidBook() {
-//        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
-//        libraryService.addAvailableProduct(book);
-//
-//        String message = libraryService.returnProduct("Other Name");
-//
-//        Assert.assertThat(message, is(equalTo("That is not a valid book to return.")));
-//    }
+
+    @Test
+    public void shouldReturnUnsuccessfulMessageToReturnUnvalidBook() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addAvailableProduct(book);
+
+        String message = libraryService.returnProduct("Other Name");
+
+        Assert.assertThat(message, is(equalTo("That is not a valid product to return.")));
+    }
 
 }

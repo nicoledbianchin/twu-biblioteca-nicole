@@ -37,12 +37,12 @@ public class LibraryService {
 
     public String returnProduct(String name) {
         LibraryProduct lendedProduct = getLendedProductByName(name);
-        if (lendedProduct == null) {
-            return "That is not a valid book to return.";
-        } else {
+        try {
             getListOfLendedProducts().removeIf(product -> product.getName().equalsIgnoreCase(name));
             addAvailableProduct(lendedProduct);
-            return "Thank you for returning the book.";
+            return "Thank you for returning the " + lendedProduct.getClass().getSimpleName().toLowerCase() + ".";
+        } catch (NullPointerException exception) {
+            return "That is not a valid product to return.";
         }
     }
 
