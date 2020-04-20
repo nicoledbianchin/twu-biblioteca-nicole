@@ -1,6 +1,8 @@
 package com.twu.biblioteca.domain;
 
-public class Movie {
+import com.twu.biblioteca.models.LibraryProduct;
+
+public class Movie implements LibraryProduct {
 
     private String name;
     private String director;
@@ -21,18 +23,22 @@ public class Movie {
         this.rate = -1;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
-    public String getDirector() {
+    @Override
+    public String getAuthorOrDirector() {
         return director;
     }
 
+    @Override
     public int getPublishedYear() {
         return publishedYear;
     }
 
+    @Override
     public int getRate() {
         return rate;
     }

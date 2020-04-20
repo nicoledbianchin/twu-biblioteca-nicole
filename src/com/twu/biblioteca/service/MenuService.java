@@ -2,6 +2,7 @@ package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.models.LibraryProduct;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,73 +32,75 @@ public class MenuService {
         }
     }
 
+    public ArrayList<LibraryProduct> getListOfAvailableProduts() {
+        return libraryService.getListOfAvailableProducts();
+    }
+
     public void manipulateMenu(int userOption) {
         if (userOptions.containsKey(userOption)) {
             switch (userOption) {
+
                 case 1:
                     System.out.println("\nSee our list of books available:");
                     System.out.println("_________________________________");
-                    for (Book book : getListOfAvailableBooks()) {
-                        System.out.print((getListOfAvailableBooks().indexOf(book) + 1) + " - ");
-                        System.out.printf(outputFormatterService.formatOutputBooks(book));
+                    for (LibraryProduct libraryProduct : getListOfAvailableProduts()) {
+                        if (libraryProduct.getClass().getSimpleName().equals(Book.class.getSimpleName())) {
+                            System.out.printf(outputFormatterService.formatOutputBook(libraryProduct));
+                        }
                     }
                     break;
 
                 case 2:
-                    System.out.println("Inform the id of the book you want to check out: ");
-                    int id = scanner.nextInt() - 1;
-                    try {
-                        libraryService.checkOutBook(id);
+                    System.out.println("Inform the name of the book you want to check out: ");
+                    String name = scanner.nextLine();
+                    boolean validBook = libraryService.checkOutProduct(name);
+                    if (validBook) {
                         System.out.println("Thank you! Enjoy the book.");
-                    } catch (Exception exception) {
+                    } else {
                         System.out.println("Sorry, that book is not available.");
                     }
-                    scanner.nextLine();
                     break;
                 case 3:
                     System.out.println("Inform the name of the book you want to return:");
                     String nameBook = scanner.nextLine();
-                    String messageBook = libraryService.returnBook(nameBook);
-                    System.out.println(messageBook);
+                    boolean validBookToReturn = libraryService.returnProduct(nameBook);
+                    if (validBookToReturn) {
+                        System.out.println("Thank you! Enjoy the book.");
+                    } else {
+                        System.out.println("Sorry, that book is not available.");
+                    }
                     break;
                 case 4:
                     System.out.println("\nSee our list of movies available:");
                     System.out.println("_________________________________");
-                    for (Movie movie : getListOfAvailableMovies()) {
-                        System.out.print((getListOfAvailableMovies().indexOf(movie) + 1) + " - ");
-                        System.out.printf(outputFormatterService.formatOutputMovies(movie));
+                    for (LibraryProduct libraryProduct : getListOfAvailableProduts()) {
+                        if (libraryProduct.getClass().getSimpleName().equals(Movie.class.getSimpleName()))
+                            System.out.printf(outputFormatterService.formatOutputMovies(libraryProduct));
                     }
                     break;
                 case 5:
-                    System.out.println("Inform the id of the movie you want to check out: ");
-                    int idMovie = scanner.nextInt() - 1;
-                    try {
-                        libraryService.checkOutMovie(idMovie);
+                    System.out.println("Inform the name of the movie you want to check out: ");
+                    String nameMovie = scanner.nextLine();
+                    boolean validMovie = libraryService.checkOutProduct(nameMovie);
+                    if (validMovie) {
                         System.out.println("Thank you! Enjoy the movie.");
-                    } catch (Exception exception) {
+                    } else {
                         System.out.println("Sorry, that movie is not available.");
                     }
-                    scanner.nextLine();
                     break;
                 case 6:
                     System.out.println("Inform the name of the movie you want to return:");
-                    String nameMovie = scanner.nextLine();
-                    String messageMovie = libraryService.returnMovie(nameMovie);
-                    System.out.println(messageMovie);
+                    String nameMovieReturn = scanner.nextLine();
+                    boolean validMovieToReturn = libraryService.returnProduct(nameMovieReturn);
+                    if (validMovieToReturn) {
+                        System.out.println("Thank you for returning the movie.");
+                    } else {
+                        System.out.println("That is not a valid movie to return.");
+                    }
                     break;
             }
-
         } else {
             System.out.println("Please select a valid option!");
         }
     }
-
-    public ArrayList<Book> getListOfAvailableBooks() {
-        return libraryService.getListOfAvailableBooks();
-    }
-
-    public ArrayList<Movie> getListOfAvailableMovies() {
-        return libraryService.getListOfAvailableMovies();
-    }
-
 }

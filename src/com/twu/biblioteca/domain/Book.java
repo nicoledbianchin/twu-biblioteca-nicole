@@ -1,6 +1,8 @@
 package com.twu.biblioteca.domain;
 
-public class Book {
+import com.twu.biblioteca.models.LibraryProduct;
+
+public class Book implements LibraryProduct {
 
     private String author;
     private String name;
@@ -12,15 +14,23 @@ public class Book {
         this.publishedYear = publishedYear;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
-    public String getAuthor() {
+    @Override
+    public String getAuthorOrDirector() {
         return author;
     }
 
+    @Override
     public int getPublishedYear() {
         return publishedYear;
+    }
+
+    @Override
+    public int getRate() {
+        return -1;
     }
 }

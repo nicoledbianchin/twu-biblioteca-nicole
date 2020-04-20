@@ -1,89 +1,54 @@
 package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.domain.Book;
 import com.twu.biblioteca.domain.Library;
-import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.models.LibraryProduct;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class LibraryService {
     private Library library = new Library();
 
-    public ArrayList<Book> getListOfAvailableBooks() {
-        return library.getListOfAvailableBooks();
+    public ArrayList<LibraryProduct> getListOfAvailableProducts() {
+        return library.getListOfAvailableProducts();
     }
 
-    public ArrayList<Book> getListOfLendedBooks() {
-        return library.getListOfLendedBooks();
+    public ArrayList<LibraryProduct> getListOfLendedProducts() {
+        return library.getListOfLendedProducts();
     }
 
-    public void checkOutBook(int id) {
-        Book newLendedBook = library.getListOfAvailableBooks().get(id);
-        getListOfAvailableBooks().remove(id);
-
-        addLendedBook(newLendedBook);
-    }
-
-    public void addLendedBook(Book book) {
-        library.addLendedBook(book);
-    }
-
-    public void addAvailableBook(Book book) {
-        library.addAvailableBook(book);
-    }
-
-    private Book getLendedBookByName(String name) {
-        return library.getLendedBookByName(name);
-    }
-
-    public String returnBook(String name) {
-        Book lendedBook = getLendedBookByName(name);
-        if (lendedBook == null) {
-            return "That is not a valid book to return.";
+    public boolean checkOutProduct(String name) {
+        LibraryProduct newLendedProduct = library.getListOfAvailableProductByName(name);
+        if (newLendedProduct == null) {
+            return false;
         } else {
-            getListOfLendedBooks().removeIf(book -> book.getName().equalsIgnoreCase(name));
-            addAvailableBook(lendedBook);
-            return "Thank you for returning the book.";
+            getListOfAvailableProducts().remove(newLendedProduct);
+            addLendedProduct(newLendedProduct);
+            return true;
         }
     }
 
-    public ArrayList<Movie> getListOfAvailableMovies() {
-        return library.getListOfAvailableMovies();
+    public void addLendedProduct(LibraryProduct libraryProduct) {
+        library.addLendedProduct(libraryProduct);
     }
 
-    public void checkOutMovie(int id) {
-        Movie newLendedMovie = library.getListOfAvailableMovies().get(id);
-        getListOfAvailableMovies().remove(id);
-
-        addLendedMovie(newLendedMovie);
+    public void addAvailableProduct(LibraryProduct libraryProduct) {
+        library.addAvailableProduct(libraryProduct);
     }
 
-    public void addLendedMovie(Movie movie) {
-        library.addLendedMovie(movie);
+    private LibraryProduct getLendedProductByName(String name) {
+        return library.getLendedProductByName(name);
     }
 
-    public ArrayList<Movie> getListOfLendedMovies() {
-        return library.getListOfLendedMovies();
-    }
-
-    private Movie getLendedMovieByName(String name) {
-        return library.getLendedMovieByName(name);
-    }
-
-    public String returnMovie(String name) {
-        Movie lendedMovie = getLendedMovieByName(name);
-        if (lendedMovie == null) {
-            return "That is not a valid movie to return.";
+    public boolean returnProduct(String name) {
+        LibraryProduct lendedProduct = getLendedProductByName(name);
+        if (lendedProduct == null) {
+            return false;
         } else {
-            getListOfLendedMovies().removeIf(book -> book.getName().equalsIgnoreCase(name));
-            addAvailableMovie(lendedMovie);
-            return "Thank you for returning the movie.";
+            getListOfLendedProducts().remove(lendedProduct);
+            addAvailableProduct(lendedProduct);
+            return true;
         }
-    }
 
-    private void addAvailableMovie(Movie lendedMovie) {
-        library.addAvailableMovie(lendedMovie);
     }
 
 }
