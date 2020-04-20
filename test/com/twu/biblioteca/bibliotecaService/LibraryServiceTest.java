@@ -1,8 +1,8 @@
 package com.twu.biblioteca.bibliotecaService;
 
-import com.twu.biblioteca.domain.Book;
-import com.twu.biblioteca.domain.Movie;
-import com.twu.biblioteca.domain.User;
+import com.twu.biblioteca.domain.objects.Book;
+import com.twu.biblioteca.domain.objects.Movie;
+import com.twu.biblioteca.domain.objects.User;
 import com.twu.biblioteca.models.LibraryProduct;
 import com.twu.biblioteca.service.LibraryService;
 import org.junit.Assert;
@@ -39,9 +39,6 @@ public class LibraryServiceTest {
         expectedList.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
         expectedList.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
         expectedList.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
-
-        actualListOfUsers.add(new User("Nicole"));
-        actualListOfUsers.add(new User("Amanda"));
     }
 
     @Test
@@ -170,15 +167,6 @@ public class LibraryServiceTest {
         boolean valid = libraryService.returnProduct("Other Name");
 
         Assert.assertFalse(valid);
-    }
-
-    @Test
-    public void shouldAskUserNameOnCheckOutItem() {
-        libraryService.checkOutProduct("The Hobbit: The Battle of the Five Armies", null);
-
-        String question = libraryService.askForLogin();
-
-        Assert.assertThat(question, is(equalTo("Please, tell us your name:")));
     }
 
     @Test

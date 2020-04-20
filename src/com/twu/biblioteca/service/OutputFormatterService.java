@@ -1,7 +1,5 @@
 package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.domain.Book;
-import com.twu.biblioteca.domain.Movie;
 import com.twu.biblioteca.models.LibraryProduct;
 
 public class OutputFormatterService {

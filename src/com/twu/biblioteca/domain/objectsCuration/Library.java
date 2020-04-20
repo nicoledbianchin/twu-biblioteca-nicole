@@ -1,5 +1,8 @@
-package com.twu.biblioteca.domain;
+package com.twu.biblioteca.domain.objectsCuration;
 
+import com.twu.biblioteca.domain.objects.Book;
+import com.twu.biblioteca.domain.objects.Movie;
+import com.twu.biblioteca.domain.objects.User;
 import com.twu.biblioteca.models.LibraryProduct;
 
 import java.util.ArrayList;
@@ -27,9 +30,6 @@ public class Library {
         listOfAvailableProducts.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
         listOfAvailableProducts.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
         listOfAvailableProducts.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
-
-        listOfUsers.add(new User("Nicole"));
-        listOfUsers.add(new User("Amanda"));
     }
 
     public ArrayList<LibraryProduct> getListOfAvailableProducts() {

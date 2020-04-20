@@ -1,7 +1,7 @@
 package com.twu.biblioteca.bibliotecaService;
 
-import com.twu.biblioteca.domain.Book;
-import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.domain.objects.Book;
+import com.twu.biblioteca.domain.objects.Movie;
 import com.twu.biblioteca.models.LibraryProduct;
 import com.twu.biblioteca.service.MenuService;
 import org.junit.Assert;
