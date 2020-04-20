@@ -12,8 +12,6 @@ public class Library {
     
     private final ArrayList<LibraryProduct> listOfAvailableProducts = new ArrayList<>();
     private final ArrayList<LibraryProduct> listOfLendedProducts = new ArrayList<>();
-    private final ArrayList<User> listOfUsers = new ArrayList<>();
-    
 
     public Library() {
         listOfAvailableProducts.add(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997));
@@ -68,7 +66,4 @@ public class Library {
          return availableProduct;
     }
 
-    public ArrayList<User> getListOfUsers() {
-        return listOfUsers;
-    }
 }
