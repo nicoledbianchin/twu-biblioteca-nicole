@@ -119,6 +119,24 @@ public class LibraryServiceTest {
         Assert.assertTrue(libraryService.getListOfLendedProducts().isEmpty());
         Assert.assertTrue(libraryService.getListOfAvailableProducts().contains(book));
     }
+
+    @Test
+    public void shouldReturnTrueToCheckoutValidProduct() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addAvailableProduct(book);
+
+        boolean valid = libraryService.checkOutProduct("Eu, Robô");
+
+        Assert.assertTrue(valid);
+    }
+
+    @Test
+    public void shouldReturnFalseToCheckoutInvalidProduct() {
+        boolean valid = libraryService.checkOutProduct("Eu, Robô");
+
+        Assert.assertFalse(valid);
+    }
+
     @Test
     public void shouldReturnTrueToReturnValidProduct() {
         Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
