@@ -20,7 +20,6 @@ public class LibraryServiceTest {
     private ArrayList<LibraryProduct> expectedList;
     private LibraryService libraryService = new LibraryService();
     private ArrayList<LibraryProduct> actualList = libraryService.getListOfAvailableProducts();
-    private ArrayList<User> actualListOfUsers = libraryService.getListOfUsers();
 
     @Before
     public void init() {
@@ -167,22 +166,6 @@ public class LibraryServiceTest {
         boolean valid = libraryService.returnProduct("Other Name");
 
         Assert.assertFalse(valid);
-    }
-
-    @Test
-    public void shouldReturnUserInformation() {
-        libraryService.getListOfUsers();
-
-        for (int i = 0; i < actualListOfUsers.size(); i++) {
-            Assert.assertThat(libraryService.getListOfUsers(), is(equalTo(actualListOfUsers)));
-        }
-    }
-
-    @Test
-    public void shouldReturnUserName() {
-        for (int i = 0; i < actualListOfUsers.size(); i++) {
-            Assert.assertThat(libraryService.getListOfUsers().get(i).getUserName(), is(equalTo(actualListOfUsers.get(i).getUserName())));
-        }
     }
 
     @Test
