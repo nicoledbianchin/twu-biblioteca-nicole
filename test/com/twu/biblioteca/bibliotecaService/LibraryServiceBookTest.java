@@ -1,6 +1,8 @@
 package com.twu.biblioteca.bibliotecaService;
 
 import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.models.LibraryProduct;
 import com.twu.biblioteca.service.LibraryService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,9 +16,9 @@ import static org.hamcrest.core.IsNot.not;
 
 public class LibraryServiceBookTest {
 
-    private ArrayList<Book> expectedList;
+    private ArrayList<LibraryProduct> expectedList;
     private LibraryService libraryService = new LibraryService();
-    private ArrayList<Book> list = libraryService.getListOfAvailableBooks();
+    private ArrayList<LibraryProduct> actualList = libraryService.getListOfAvailableProducts();
 
     @Before
     public void init() {
@@ -28,102 +30,55 @@ public class LibraryServiceBookTest {
         expectedList.add(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", 2003));
         expectedList.add(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", 2005));
         expectedList.add(new Book("Harry Potter and the Deathly Hollows", "J.K. Rowling", 2007));
+
+        expectedList.add(new Movie("The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", 2002, 9));
+        expectedList.add(new Movie("The Lord of the Rings: The Two Towers", "Peter Jackson", 2002, 10));
+        expectedList.add(new Movie("The Lord of the Rings: The Return of the King", "Peter Jackson", 2003, 9));
+        expectedList.add(new Movie("The Hobbit: An Unexpected Journey", "Peter Jackson", 2012));
+        expectedList.add(new Movie("The Hobbit: The Desolation of Smaug", "Peter Jackson", 2013));
+        expectedList.add(new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014));
     }
 
     @Test
-    public void shouldReturnListOfBooks() {
+    public void shouldReturnListOfProducts() {
         for (int j = 0; j < expectedList.size(); j++) {
-            Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
+            Assert.assertEquals(expectedList.get(j).getName(), actualList.get(j).getName());
         }
     }
 
     @Test
-    public void souldHaveAuthorPerBook() {
-        for (int i = 0; i < list.size(); i++) {
-            Assert.assertThat(list.get(i).getAuthor(), is(not(equalTo(null))));
+    public void souldHaveAuthorOrDirectorPerProduct() {
+        for (int i = 0; i < actualList.size(); i++) {
+            Assert.assertThat(actualList.get(i).getAuthorOrDirector(), is(not(equalTo(null))));
         }
     }
 
     @Test
-    public void shouldHavePublishedYearPerBook() {
-        for (int i = 0; i < list.size(); i++) {
-            Assert.assertThat(list.get(i).getPublishedYear(), is(not(equalTo(null))));
+    public void shouldHavePublishedYearPerProduct() {
+        for (int i = 0; i < actualList.size(); i++) {
+            Assert.assertThat(actualList.get(i).getPublishedYear(), is(not(equalTo(null))));
+        }
+    }
+    @Test
+    public void shouldReturnRate() {
+        for (int i = 0; i < expectedList.size(); i++) {
+            Assert.assertEquals(actualList.get(i).getRate(), expectedList.get(i).getRate());
         }
     }
 
     @Test
     public void shouldDecreaseListSizeByOne() {
-        int expectedSize = list.size() - 1;
-        libraryService.checkOutBook(0);
+        int expectedSize = actualList.size() - 1;
+        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone");
 
-        Assert.assertThat(list.size(), is(expectedSize));
+        Assert.assertThat(actualList.size(), is(expectedSize));
     }
 
     @Test
-    public void shouldRemoveBookFromList() {
-        String expectedName = list.get(1).getName();
-        libraryService.checkOutBook(0);
+    public void shouldRemoveProductFromList() {
+        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone");
 
-        Assert.assertThat(list.get(0).getName(), is(equalTo(expectedName)));
-    }
-
-    @Test
-    public void shouldPopulateListOfLandedBooks() {
-        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
-
-        libraryService.addLendedBook(book);
-
-        Assert.assertThat(libraryService.getListOfLendedBooks().get(0), is(equalTo(book)));
-    }
-
-    @Test
-    public void shouldRemoveBookFromAvailableListAndAddInLandedList() {
-        Book book = list.get(0);
-        libraryService.checkOutBook(0);
-
-        Assert.assertThat(list.get(0), is(not(equalTo(book))));
-        Assert.assertThat(libraryService.getListOfLendedBooks().get(0), is(equalTo(book)));
-    }
-
-    @Test
-    public void shouldRemoveBookFromListOfLendedBooks() {
-        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
-        libraryService.addLendedBook(book);
-
-        libraryService.returnBook("Eu, Robô");
-
-        Assert.assertTrue(libraryService.getListOfLendedBooks().isEmpty());
-    }
-
-    @Test
-    public void shouldRemoveBookFromListOfLendedBooksAndAddInListOfAvailableBooks() {
-        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
-        libraryService.addLendedBook(book);
-
-        libraryService.returnBook("Eu, Robô");
-
-        Assert.assertTrue(libraryService.getListOfLendedBooks().isEmpty());
-        Assert.assertTrue(libraryService.getListOfAvailableBooks().contains(book));
-    }
-
-    @Test
-    public void shouldReturnSuccessflMessageToReturnValidBook() {
-        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
-        libraryService.addLendedBook(book);
-
-        String message = libraryService.returnBook("Eu, Robô");
-
-        Assert.assertThat(message, is(equalTo("Thank you for returning the book.")));
-    }
-
-    @Test
-    public void shouldReturnUnsuccessfulMessageToReturnUnvalidBook() {
-        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
-        libraryService.addAvailableBook(book);
-
-        String message = libraryService.returnBook("Other Name");
-
-        Assert.assertThat(message, is(equalTo("That is not a valid book to return.")));
+        Assert.assertThat(actualList.get(0).getName(), is(not(equalTo("Harry Potter and the Philosopher's Stone"))));
     }
 
 }
