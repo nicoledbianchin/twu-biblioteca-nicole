@@ -15,4 +15,16 @@ public class UserService {
     public ArrayList<User> getListOfUsers() {
         return login.getlistOfUsers();
     }
+
+    public boolean validateUser(String username) {
+        boolean validUser = false;
+        for (User user : getListOfUsers()) {
+            if (user.getUserName().equalsIgnoreCase(username)){
+                validUser = true;
+            } else {
+                validUser = false;
+            }
+        }
+        return validUser;
+    }
 }

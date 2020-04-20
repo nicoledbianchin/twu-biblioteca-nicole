@@ -57,4 +57,17 @@ public class UserServiceTest {
         }
     }
 
+    @Test
+    public void shouldValidateUser() {
+        boolean validUser = userService.validateUser("Trixie");
+
+        Assert.assertTrue(validUser);
+    }
+
+    @Test
+    public void shouldNotValidateUser() {
+        boolean validUser = userService.validateUser("OtherName");
+
+        Assert.assertFalse(validUser);
+    }
 }
