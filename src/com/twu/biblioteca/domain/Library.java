@@ -1,6 +1,5 @@
 package com.twu.biblioteca.domain;
 
-import com.sun.deploy.net.MessageHeader;
 import com.twu.biblioteca.models.LibraryProduct;
 
 import java.util.ArrayList;
