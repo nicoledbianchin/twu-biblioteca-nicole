@@ -6,14 +6,6 @@ import com.twu.biblioteca.models.LibraryProduct;
 
 public class OutputFormatterService {
 
-    public void formatOutputProduct(LibraryProduct libraryProduct) {
-        if (libraryProduct.getClass().getSimpleName().equals(Book.class.getSimpleName())) {
-            formatOutputBook(libraryProduct);
-        } else {
-            formatOutputMovies(libraryProduct);
-        }
-    }
-
     public String formatOutputBook(LibraryProduct libraryProduct) {
         return String.format("%s, written by %s, published in %d\n", libraryProduct.getName(), libraryProduct.getAuthorOrDirector(), libraryProduct.getPublishedYear());
     }
