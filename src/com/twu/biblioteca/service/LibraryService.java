@@ -53,10 +53,6 @@ public class LibraryService {
 
     }
 
-    public ArrayList<User> getListOfUsers() {
-        return library.getListOfUsers();
-    }
-
     public String getUserCheckoutItem(String name) {
         return getLendedProductByName(name).getUserName();
     }
