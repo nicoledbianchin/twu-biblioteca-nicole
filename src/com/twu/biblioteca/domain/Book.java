@@ -19,12 +19,18 @@ public class Book implements LibraryProduct {
         return name;
     }
 
-    public String getAuthor() {
+    @Override
+    public String getAuthorOrDirector() {
         return author;
     }
 
     @Override
     public int getPublishedYear() {
         return publishedYear;
+    }
+
+    @Override
+    public int getRate() {
+        return -1;
     }
 }

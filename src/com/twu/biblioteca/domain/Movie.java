@@ -28,7 +28,8 @@ public class Movie implements LibraryProduct {
         return name;
     }
 
-    public String getDirector() {
+    @Override
+    public String getAuthorOrDirector() {
         return director;
     }
 
@@ -37,6 +38,7 @@ public class Movie implements LibraryProduct {
         return publishedYear;
     }
 
+    @Override
     public int getRate() {
         return rate;
     }
