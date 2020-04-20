@@ -14,7 +14,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 
-public class LibraryServiceBookTest {
+public class LibraryServiceTest {
 
     private ArrayList<LibraryProduct> expectedList;
     private LibraryService libraryService = new LibraryService();
@@ -80,5 +80,74 @@ public class LibraryServiceBookTest {
 
         Assert.assertThat(actualList.get(0).getName(), is(not(equalTo("Harry Potter and the Philosopher's Stone"))));
     }
+
+    @Test
+    public void shouldPopulateListOfLandedProducts() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+
+        libraryService.addLendedProduct(book);
+
+        Assert.assertThat(libraryService.getListOfLendedProducts().get(0), is(equalTo(book)));
+    }
+
+    @Test
+    public void shouldRemoveBookFromAvailableListAndAddInLandedList() {
+        LibraryProduct libraryProduct = actualList.get(0);
+        libraryService.checkOutProduct( "Harry Potter and the Philosopher's Stone");
+
+        Assert.assertFalse(actualList.contains(libraryProduct));
+        Assert.assertTrue(libraryService.getListOfLendedProducts().contains(libraryProduct));
+    }
+
+    @Test
+    public void shouldRemoveBookFromListOfLendedProducts() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addLendedProduct(book);
+
+        libraryService.returnProduct("Eu, Robô");
+
+        Assert.assertTrue(libraryService.getListOfLendedProducts().isEmpty());
+    }
+
+    @Test
+    public void shouldRemoveBookFromListOfLendedAndAddInListOfAvailable() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addLendedProduct(book);
+
+        libraryService.returnProduct("Eu, Robô");
+
+        Assert.assertTrue(libraryService.getListOfLendedProducts().isEmpty());
+        Assert.assertTrue(libraryService.getListOfAvailableProducts().contains(book));
+    }
+
+    @Test
+    public void shouldReturnSuccessflMessageToReturnValidProduct() {
+        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+        libraryService.addLendedProduct(book);
+
+        String message = libraryService.returnProduct("Eu, Robô");
+
+        Assert.assertThat(message, is(equalTo("Thank you for returning the book.")));
+    }
+
+    @Test
+    public void shouldReturnSuccessfulMessageToReturnValidBook() {
+        Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
+        libraryService.addLendedProduct(movie);
+
+        String message = libraryService.returnProduct("Matilda");
+
+        Assert.assertThat(message, is(equalTo("Thank you for returning the movie.")));
+    }
+//
+//    @Test
+//    public void shouldReturnUnsuccessfulMessageToReturnUnvalidBook() {
+//        Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
+//        libraryService.addAvailableProduct(book);
+//
+//        String message = libraryService.returnProduct("Other Name");
+//
+//        Assert.assertThat(message, is(equalTo("That is not a valid book to return.")));
+//    }
 
 }
