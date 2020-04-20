@@ -32,7 +32,7 @@ public class MenuService {
         }
     }
 
-    private ArrayList<LibraryProduct> getListOfAvailableProduts() {
+    public ArrayList<LibraryProduct> getListOfAvailableProduts() {
         return libraryService.getListOfAvailableProducts();
     }
 

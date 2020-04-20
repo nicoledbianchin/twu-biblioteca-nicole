@@ -9,7 +9,7 @@ public class LibraryService {
     private Library library = new Library();
 
     public ArrayList<LibraryProduct> getListOfAvailableProducts() {
-        return library.getListOfLendedProducts();
+        return library.getListOfAvailableProducts();
     }
 
     public ArrayList<LibraryProduct> getListOfLendedProducts() {
