@@ -119,35 +119,34 @@ public class LibraryServiceTest {
         Assert.assertTrue(libraryService.getListOfLendedProducts().isEmpty());
         Assert.assertTrue(libraryService.getListOfAvailableProducts().contains(book));
     }
-
     @Test
-    public void shouldReturnSuccessflMessageToReturnValidProduct() {
+    public void shouldReturnTrueToReturnValidProduct() {
         Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
         libraryService.addLendedProduct(book);
 
-        String message = libraryService.returnProduct("Eu, Robô");
+        boolean valid = libraryService.returnProduct("Eu, Robô");
 
-        Assert.assertThat(message, is(equalTo("Thank you for returning the book.")));
+        Assert.assertTrue(valid);
     }
 
     @Test
-    public void shouldReturnSuccessfulMessageToReturnValidBook() {
+    public void shouldReturnTrueToReturnValidBook() {
         Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
         libraryService.addLendedProduct(movie);
 
-        String message = libraryService.returnProduct("Matilda");
+        boolean valid = libraryService.returnProduct("Matilda");
 
-        Assert.assertThat(message, is(equalTo("Thank you for returning the movie.")));
+        Assert.assertTrue(valid);
     }
 
     @Test
-    public void shouldReturnUnsuccessfulMessageToReturnUnvalidBook() {
+    public void shouldReturnFalseToReturnUnvalidBook() {
         Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
         libraryService.addAvailableProduct(book);
 
-        String message = libraryService.returnProduct("Other Name");
+        boolean valid = libraryService.returnProduct("Other Name");
 
-        Assert.assertThat(message, is(equalTo("That is not a valid product to return.")));
+        Assert.assertFalse(valid);
     }
 
 }
