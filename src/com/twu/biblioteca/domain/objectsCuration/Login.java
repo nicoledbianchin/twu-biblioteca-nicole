@@ -8,7 +8,7 @@ public class Login {
     private ArrayList<User> listOfUsers = new ArrayList<>();
 
     public Login () {
-        listOfUsers.add(new User("Trixie"));
+        listOfUsers.add(new User("Trixie", "trixie@gmail,com", 1234567890));
     }
 
     public ArrayList<User> getlistOfUsers() {

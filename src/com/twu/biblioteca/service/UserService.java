@@ -12,7 +12,6 @@ public class UserService {
         return "Please, tell us your name:";
     }
 
-
     public ArrayList<User> getListOfUsers() {
         return login.getlistOfUsers();
     }
