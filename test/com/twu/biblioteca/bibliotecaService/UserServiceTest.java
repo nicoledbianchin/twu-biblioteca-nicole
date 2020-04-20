@@ -17,7 +17,7 @@ public class UserServiceTest {
 
     @Before
     public void init() {
-        actualList.add(new User("Trixie"));
+        actualList.add(new User("Trixie", "trixie@gmail,com", 1234567890));
     }
 
     @Test
@@ -40,6 +40,20 @@ public class UserServiceTest {
     public void shouldReturnUserName() {
         for (int i = 0; i < actualList.size(); i++) {
             Assert.assertThat(userService.getListOfUsers().get(i).getUserName(), is(equalTo(actualList.get(i).getUserName())));
+        }
+    }
+
+    @Test
+    public void shouldReturnEmail() {
+        for (int i = 0; i < actualList.size(); i++) {
+            Assert.assertThat(userService.getListOfUsers().get(i).getEmail(), is(equalTo(actualList.get(i).getEmail())));
+        }
+    }
+
+    @Test
+    public void shouldReturnPhoneNumber() {
+        for (int i = 0; i < actualList.size(); i++) {
+            Assert.assertThat(userService.getListOfUsers().get(i).getPhoneNumber(), is(equalTo(actualList.get(i).getPhoneNumber())));
         }
     }
 
