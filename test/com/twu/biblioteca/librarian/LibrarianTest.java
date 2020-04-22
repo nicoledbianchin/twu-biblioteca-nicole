@@ -9,14 +9,14 @@ public class LibrarianTest {
 
     @Test
     public void shouldValidateLoginNumber() {
-        boolean validLogin = librarian.validateLoginNumber(7878 - 1212);
+        boolean validLogin = librarian.validateLoginNumber(78781212);
 
         Assert.assertTrue(validLogin);
     }
 
     @Test
     public void shouldNotValidateLoginNumber() {
-        boolean invalidLogin = librarian.validateLoginNumber(7979 - 2345);
+        boolean invalidLogin = librarian.validateLoginNumber(79792345);
 
         Assert.assertFalse(invalidLogin);
     }

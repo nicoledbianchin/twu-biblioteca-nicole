@@ -11,10 +11,11 @@ import java.util.Scanner;
 
 public class MenuService {
     private LibraryService libraryService = new LibraryService();
+    private UserService userService = new UserService();
+    private LibrarianService librarianService = new LibrarianService();
     private OutputFormatterService outputFormatterService = new OutputFormatterService();
     private Map<Integer, String> userOptions = new HashMap<>();
     private Scanner scanner = new Scanner(System.in);
-    private UserService userService = new UserService();
 
     public MenuService() {
         userOptions.put(1, "1 - List of books");
@@ -24,7 +25,8 @@ public class MenuService {
         userOptions.put(5, "5 - Check out movie");
         userOptions.put(6, "6 - Return Movie");
         userOptions.put(7, "7 - Login");
-        userOptions.put(8, "8 - Exit");
+        userOptions.put(8, "8 - Librarian login");
+        userOptions.put(9, "9 - Exit");
     }
 
     public void showMenu() {
@@ -128,6 +130,18 @@ public class MenuService {
                 case 7:
                     System.out.println(login());
                     break;
+                case 8:
+                    System.out.println("Inform the login number: ");
+                    int loginNumber = scanner.nextInt();
+                    System.out.println("Inform the password: ");
+                    int password = scanner.nextInt();
+                    boolean validLogin = librarianService.login(loginNumber, password);
+                    if (validLogin) {
+                        System.out.println(libraryService.getCheckoutInformation());
+                    } else {
+                        System.out.println("Invalid login or password, please try again.");
+                    }
+
             }
         } else {
             System.out.println("Please select a valid option!");
