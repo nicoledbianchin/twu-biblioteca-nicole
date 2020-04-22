@@ -53,4 +53,13 @@ public class OutputFormatterServiceTest {
 
         Assert.assertThat(actualString, is(equalTo(expectedString)));
     }
+
+    @Test
+    public void shouldReturnCheckOutInformation() {
+        String actualString = outputFormatterService.formatOutputCheckoutItemInformation("Movie", "The Lord of the Rings: The Fellowship of the Ring", "Trixie");
+
+        String expectedString = "Movie: The Lord of the Rings: The Fellowship of the Ring, name: Trixie\n";
+
+        Assert.assertThat(actualString, is(equalTo(expectedString)));
+    }
 }

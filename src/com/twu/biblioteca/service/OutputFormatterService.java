@@ -20,4 +20,8 @@ public class OutputFormatterService {
     public String formatOutputUserInformation(User user) {
         return String.format("Name: %s, email: %s, phone number: %d", user.getUserName(), user.getEmail(), user.getPhoneNumber());
     }
+
+    public String formatOutputCheckoutItemInformation(String className, String productName, String userName) {
+        return String.format("%s: %s, name: %s\n", className, productName, userName);
+    }
 }

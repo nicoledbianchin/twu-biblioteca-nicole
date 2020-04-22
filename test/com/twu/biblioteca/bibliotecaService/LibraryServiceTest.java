@@ -177,4 +177,14 @@ public class LibraryServiceTest {
         Assert.assertThat(actualName, is(equalTo("Nicole")));
     }
 
+    @Test
+    public void shouldReturnCheckOutInformation() {
+        libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone", "Trixie");
+        String actualString = libraryService.getCheckoutInformation();
+
+        String expectedString = "Book: Harry Potter and the Philosopher's Stone, name: Trixie\n";
+
+        Assert.assertThat(actualString, is(equalTo(expectedString)));
+    }
+
 }
