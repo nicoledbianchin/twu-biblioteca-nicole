@@ -21,13 +21,6 @@ public class UserServiceTest {
     }
 
     @Test
-    public void shouldAskUserNameOnCheckOutItem() {
-        String question = userService.askForLogin();
-
-        Assert.assertThat(question, is(equalTo("Please, tell us your name:")));
-    }
-
-    @Test
     public void shouldReturnUserInformation() {
         userService.getListOfUsers();
 
@@ -74,8 +67,6 @@ public class UserServiceTest {
     @Test
     public void shouldAddNewUserToUserList() {
         userService.createNewUser("Crystal", "crystal@gmail.com", 12345678);
-
-        User expectdUser = new User("Crystal", "crystal@gmail.com", 12345678);
 
         Assert.assertThat(actualList.get(2).getUserName(), is(equalTo("Crystal")));
         Assert.assertThat(actualList.get(2).getEmail(), is(equalTo("crystal@gmail.com")));
