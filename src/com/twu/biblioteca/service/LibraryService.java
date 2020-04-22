@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class LibraryService {
     private Library library = new Library();
+    private OutputFormatterService outputFormatterService = new OutputFormatterService();
 
     public ArrayList<LibraryProduct> getListOfAvailableProducts() {
         return library.getListOfAvailableProducts();
@@ -57,4 +58,14 @@ public class LibraryService {
         return getLendedProductByName(name).getUserName();
     }
 
+    public String getCheckoutInformation() {
+        String output = "";
+        for (LibraryProduct libraryProduct : getListOfLendedProducts()) {
+            String userName = getUserCheckoutItem(libraryProduct.getName());
+            String productClass = libraryProduct.getClass().getSimpleName();
+            String productName = libraryProduct.getName();
+            output = output + outputFormatterService.formatOutputCheckoutItemInformation(productClass, productName, userName);
+        }
+        return output;
+    }
 }
