@@ -2,6 +2,7 @@ package com.twu.biblioteca.bibliotecaService;
 
 import com.twu.biblioteca.domain.objects.Book;
 import com.twu.biblioteca.domain.objects.Movie;
+import com.twu.biblioteca.domain.objects.User;
 import com.twu.biblioteca.service.OutputFormatterService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,12 +34,22 @@ public class OutputFormatterServiceTest {
         Assert.assertThat(actualString, is(equalTo(expectedString)));
     }
 
-        @Test
+    @Test
     public void shouldReturnStringFormattedWithoutRate() {
         Movie movie = new Movie("The Hobbit: The Battle of the Five Armies", "Peter Jackson", 2014);
 
         String actualString = outputFormatterService.formatOutputMovies(movie);
         String expectedString = "The Hobbit: The Battle of the Five Armies, directed by Peter Jackson, released in 2014, unrated\n";
+
+        Assert.assertThat(actualString, is(equalTo(expectedString)));
+    }
+
+    @Test
+    public void shouldReturnStringFormattedWithUserInformation() {
+        User user = new User("Crystal", "crystal@gmail.com", 12345678);
+        String actualString = outputFormatterService.formatOutputUserInformation(user);
+
+        String expectedString = "Name: Crystal, email: crystal@gmail.com, phone number: 12345678";
 
         Assert.assertThat(actualString, is(equalTo(expectedString)));
     }
