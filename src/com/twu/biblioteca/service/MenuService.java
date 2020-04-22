@@ -4,7 +4,6 @@ import com.twu.biblioteca.domain.objects.Book;
 import com.twu.biblioteca.domain.objects.Movie;
 import com.twu.biblioteca.models.LibraryProduct;
 
-import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +23,8 @@ public class MenuService {
         userOptions.put(4, "4 - Show list of available movies");
         userOptions.put(5, "5 - Check out movie");
         userOptions.put(6, "6 - Return Movie");
-        userOptions.put(7, "7 - Exit");
+        userOptions.put(7, "7 - Login");
+        userOptions.put(8, "8 - Exit");
     }
 
     public void showMenu() {
@@ -38,14 +38,14 @@ public class MenuService {
         return libraryService.getListOfAvailableProducts();
     }
 
-    public String dealWithLogin() {
+    public String validateUser() {
         System.out.println("Please, tell us your name: ");
         String name = scanner.nextLine();
         boolean validName = userService.validateUser(name);
         if (validName) {
             return name;
         } else {
-            System.out.println("Please, tell us your email: ");
+            System.out.println("You don't have an account yet. To proceed, please tell us your email: ");
             String email = scanner.nextLine();
             System.out.println("Please, tell us your phone number: ");
             int phonenumber = scanner.nextInt();
@@ -53,6 +53,12 @@ public class MenuService {
             System.out.println("Thank you!");
             return name;
         }
+    }
+
+    public String login() {
+        String name = validateUser();
+        System.out.println("Here is your contact information:");
+        return userService.showContactInformation(name);
     }
 
     public void manipulateMenu(int userOption) {
@@ -72,7 +78,7 @@ public class MenuService {
                 case 2:
                     System.out.println("Inform the name of the book you want to check out: ");
                     String name = scanner.nextLine();
-                    String userName = dealWithLogin();
+                    String userName = validateUser();
                     boolean validBook = libraryService.checkOutProduct(name, userName);
                     if (validBook) {
                         System.out.println("Thank you! Enjoy the book.");
@@ -101,7 +107,7 @@ public class MenuService {
                 case 5:
                     System.out.println("Inform the name of the movie you want to check out: ");
                     String nameMovie = scanner.nextLine();
-                    String userNameMovie = dealWithLogin();
+                    String userNameMovie = validateUser();
                     boolean validMovie = libraryService.checkOutProduct(nameMovie, userNameMovie);
                     if (validMovie) {
                         System.out.println("Thank you! Enjoy the movie.");
@@ -118,6 +124,9 @@ public class MenuService {
                     } else {
                         System.out.println("That is not a valid movie to return.");
                     }
+                    break;
+                case 7:
+                    System.out.println(login());
                     break;
             }
         } else {
