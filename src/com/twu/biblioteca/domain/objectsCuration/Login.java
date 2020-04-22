@@ -14,4 +14,8 @@ public class Login {
     public ArrayList<User> getlistOfUsers() {
         return listOfUsers;
     }
+
+    public void addNewUser(String username, String email, int phoneNumber) {
+        listOfUsers.add(new User(username, email, phoneNumber));
+    }
 }

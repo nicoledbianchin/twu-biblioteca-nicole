@@ -27,4 +27,8 @@ public class UserService {
         }
         return validUser;
     }
+
+    public void createNewUser(String username, String email, int phoneNumber) {
+        login.addNewUser(username, email, phoneNumber);
+    }
 }

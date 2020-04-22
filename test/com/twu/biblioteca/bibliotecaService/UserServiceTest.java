@@ -70,4 +70,15 @@ public class UserServiceTest {
 
         Assert.assertFalse(validUser);
     }
+
+    @Test
+    public void shouldAddNewUserToUserList() {
+        userService.createNewUser("Crystal", "crystal@gmail.com", 12345678);
+
+        User expectdUser = new User("Crystal", "crystal@gmail.com", 12345678);
+
+        Assert.assertThat(actualList.get(2).getUserName(), is(equalTo("Crystal")));
+        Assert.assertThat(actualList.get(2).getEmail(), is(equalTo("crystal@gmail.com")));
+        Assert.assertThat(actualList.get(2).getPhoneNumber(), is(equalTo(12345678)));
+    }
 }
