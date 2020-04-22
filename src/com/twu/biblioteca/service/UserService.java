@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class UserService {
     private Login login = new Login();
+    private OutputFormatterService outputFormatterService = new OutputFormatterService();
 
     public ArrayList<User> getListOfUsers() {
         return login.getlistOfUsers();
@@ -26,5 +27,14 @@ public class UserService {
 
     public void createNewUser(String username, String email, int phoneNumber) {
         login.addNewUser(username, email, phoneNumber);
+    }
+
+    public User getUserByName(String name) {
+        return login.getUserByName(name);
+    }
+
+    public String showContactInformation(String name) {
+        User user = getUserByName(name);
+        return outputFormatterService.formatOutputUserInformation(user);
     }
 }

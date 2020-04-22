@@ -17,7 +17,7 @@ public class UserServiceTest {
 
     @Before
     public void init() {
-        actualList.add(new User("Trixie", "trixie@gmail,com", 1234567890));
+        actualList.add(new User("Trixie", "trixie@gmail.com", 1234567890));
     }
 
     @Test
@@ -71,5 +71,23 @@ public class UserServiceTest {
         Assert.assertThat(actualList.get(2).getUserName(), is(equalTo("Crystal")));
         Assert.assertThat(actualList.get(2).getEmail(), is(equalTo("crystal@gmail.com")));
         Assert.assertThat(actualList.get(2).getPhoneNumber(), is(equalTo(12345678)));
+    }
+
+    @Test
+    public void shouldGetUserByName() {
+        User user = userService.getUserByName("Trixie");
+
+        Assert.assertThat(user.getUserName(), is(equalTo("Trixie")));
+        Assert.assertThat(user.getEmail(), is(equalTo("trixie@gmail.com")));
+        Assert.assertThat(user.getPhoneNumber(), is(equalTo(1234567890)));
+    }
+
+    @Test
+    public void shouldReturnContactInformation() {
+        String actualString = userService.showContactInformation("Trixie");
+
+        String expectedString = "Name: Trixie, email: trixie@gmail.com, phone number: 1234567890";
+
+        Assert.assertThat(actualString, is(equalTo(expectedString)));
     }
 }
