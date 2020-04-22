@@ -11,4 +11,13 @@ public class Librarian {
             return false;
         }
     }
+
+
+    public boolean validatePassword(int password) {
+        if (password == this.password) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

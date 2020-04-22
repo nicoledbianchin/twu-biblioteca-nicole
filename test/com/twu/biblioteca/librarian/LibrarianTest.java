@@ -4,7 +4,7 @@ import com.twu.biblioteca.domain.objects.Librarian;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LibrarianService {
+public class LibrarianTest {
     private Librarian librarian = new Librarian();
 
     @Test
@@ -19,5 +19,19 @@ public class LibrarianService {
         boolean invalidLogin = librarian.validateLoginNumber(7979 - 2345);
 
         Assert.assertFalse(invalidLogin);
+    }
+
+    @Test
+    public void shouldValidatePassword() {
+        boolean validPassword = librarian.validatePassword(666);
+
+        Assert.assertTrue(validPassword);
+    }
+
+    @Test
+    public void shouldNotValidatePassword() {
+        boolean invalidPassword = librarian.validatePassword(345);
+
+        Assert.assertFalse(invalidPassword);
     }
 }
