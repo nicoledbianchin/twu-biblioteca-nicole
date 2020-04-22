@@ -1,5 +1,6 @@
 package com.twu.biblioteca.service;
 
+import com.twu.biblioteca.domain.objects.User;
 import com.twu.biblioteca.models.LibraryProduct;
 
 public class OutputFormatterService {
@@ -14,5 +15,9 @@ public class OutputFormatterService {
         } else {
             return String.format("%s, directed by %s, released in %d, rating: %d\n", libraryProduct.getName(), libraryProduct.getAuthorOrDirector(), libraryProduct.getPublishedYear(), libraryProduct.getRate());
         }
+    }
+
+    public String formatOutputUserInformation(User user) {
+        return String.format("Name: %s, email: %s, phone number: %d", user.getUserName(), user.getEmail(), user.getPhoneNumber());
     }
 }
