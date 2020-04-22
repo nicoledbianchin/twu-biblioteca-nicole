@@ -49,7 +49,7 @@ public class OutputFormatterServiceTest {
         User user = new User("Crystal", "crystal@gmail.com", 12345678);
         String actualString = outputFormatterService.formatOutputUserInformation(user);
 
-        String expectedString = "Name: Crystal, email: crystal@gmail.com, phone number: 12345678\n";
+        String expectedString = "Name: Crystal, email: crystal@gmail.com, phone number: 12345678";
 
         Assert.assertThat(actualString, is(equalTo(expectedString)));
     }
@@ -58,7 +58,7 @@ public class OutputFormatterServiceTest {
     public void shouldReturnCheckOutInformation() {
         String actualString = outputFormatterService.formatOutputCheckoutItemInformation("Movie", "The Lord of the Rings: The Fellowship of the Ring", "Trixie");
 
-        String expectedString = "Movie: The Lord of the Rings: The Fellowship of the Ring, name: Trixie";
+        String expectedString = "Movie: The Lord of the Rings: The Fellowship of the Ring, name: Trixie\n";
 
         Assert.assertThat(actualString, is(equalTo(expectedString)));
     }
