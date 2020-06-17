@@ -48,26 +48,6 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void souldHaveAuthorOrDirectorPerProduct() {
-        for (int i = 0; i < actualList.size(); i++) {
-            Assert.assertThat(actualList.get(i).getAuthorOrDirector(), is(not(equalTo(null))));
-        }
-    }
-
-    @Test
-    public void shouldHavePublishedYearPerProduct() {
-        for (int i = 0; i < actualList.size(); i++) {
-            Assert.assertThat(actualList.get(i).getPublishedYear(), is(not(equalTo(null))));
-        }
-    }
-    @Test
-    public void shouldReturnRate() {
-        for (int i = 0; i < expectedList.size(); i++) {
-            Assert.assertEquals(actualList.get(i).getRate(), expectedList.get(i).getRate());
-        }
-    }
-
-    @Test
     public void shouldDecreaseListSizeByOne() {
         int expectedSize = actualList.size() - 1;
         libraryService.checkOutProduct("Harry Potter and the Philosopher's Stone", null);
