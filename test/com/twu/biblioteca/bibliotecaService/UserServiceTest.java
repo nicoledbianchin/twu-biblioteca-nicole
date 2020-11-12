@@ -74,7 +74,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void shouldGetUserByName() {
+    public void shouldGetUserDataByName() {
         User user = userService.getUserByName("Trixie");
 
         Assert.assertThat(user.getUserName(), is(equalTo("Trixie")));

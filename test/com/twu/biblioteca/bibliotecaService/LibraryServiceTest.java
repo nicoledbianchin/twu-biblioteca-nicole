@@ -41,7 +41,7 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void shouldReturnListOfProducts() {
+    public void shouldReturnFirtItemOnTheList() {
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), actualList.get(j).getName());
         }
@@ -119,7 +119,7 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void shouldReturnTrueToReturnValidProduct() {
+    public void shouldReturnTrueToValidBook() {
         Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
         libraryService.addLendedProduct(book);
 
@@ -129,7 +129,7 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void shouldReturnTrueToReturnValidBook() {
+    public void shouldReturnTrueToValidMovie() {
         Movie movie = new Movie("Matilda", "Danny DeVito", 1996);
         libraryService.addLendedProduct(movie);
 
@@ -139,7 +139,7 @@ public class LibraryServiceTest {
     }
 
     @Test
-    public void shouldReturnFalseToReturnUnvalidBook() {
+    public void shouldReturnFalseToUnvalidBook() {
         Book book = new Book("Eu, Robô", "Isaac Asimov", 1950);
         libraryService.addAvailableProduct(book);
 

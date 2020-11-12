@@ -36,7 +36,7 @@ public class MenuServiceTest {
     }
 
     @Test
-    public void shouldReturnListOfBooks() {
+    public void shouldReturnFirstItemOfTheList() {
         ArrayList<LibraryProduct> list = menuService.getListOfAvailableProduts();
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
@@ -46,7 +46,7 @@ public class MenuServiceTest {
     }
 
     @Test
-    public void shouldReturnListOfMovies() {
+    public void shouldReturnFirstItemOfListOfMovies() {
         ArrayList<LibraryProduct> list = menuService.getListOfAvailableProduts();
         for (int j = 0; j < expectedList.size(); j++) {
             Assert.assertEquals(expectedList.get(j).getName(), list.get(j).getName());
